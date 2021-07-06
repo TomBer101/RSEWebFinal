@@ -4,6 +4,8 @@ import enginePackage.Users;
 import utils.ServletsUtils;
 import utils.SessionUtils;
 
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -26,9 +28,11 @@ public class LogInServlet extends HttpServlet
         String userNameFromParameter = request.getParameter("username");    // gets what the user typed
         if (userNameFromParameter == null || userNameFromParameter.isEmpty())   // input is empty (error)
         {
+            response.setContentType("");
             out.println("<script type=\"text/javascript\">");
             out.println("alert('Missing information!');");
             out.println("</script>");
+            //response.sendRedirect("../../index.html");
         }
         else    // input is valid (not empty)
         {
@@ -43,6 +47,11 @@ public class LogInServlet extends HttpServlet
                 response.sendRedirect(RSE_HOME_PAGE_URL);
         }
 
+    }
+    /******************************************************************************/
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
     }
     /******************************************************************************/
 }
