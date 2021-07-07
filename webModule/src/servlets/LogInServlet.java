@@ -28,10 +28,11 @@ public class LogInServlet extends HttpServlet
         String userNameFromParameter = request.getParameter("username");    // gets what the user typed
         if (userNameFromParameter == null || userNameFromParameter.isEmpty())   // input is empty (error)
         {
-            response.setContentType("");
-            out.println("<script type=\"text/javascript\">");
-            out.println("alert('Missing information!');");
-            out.println("</script>");
+           request.setAttribute("ERROR", "Missing Information!");
+            //response.setContentType("");
+//            out.println("<script type=\"text/javascript\">");
+//            out.println("alert('Missing information!');");
+//            out.println("</script>");
             //response.sendRedirect("../../index.html");
         }
         else    // input is valid (not empty)
