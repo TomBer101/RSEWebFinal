@@ -1,5 +1,6 @@
 package servlets;
 
+import enginePackage.User;
 import enginePackage.Users;
 import utils.ServletsUtils;
 import utils.SessionUtils;
@@ -15,43 +16,76 @@ import java.io.PrintWriter;
 public class LogInServlet extends HttpServlet
 {
     /******************************************************************************/
-    private final String SIGN_UP_URL = "../signUp/signUp.html";
-    private final String RSE_HOME_PAGE_URL =  "../homePage/homePage.html";
+    private final String RSE_ADMIN_HOME_PAGE_URL = "pages/adminHomePage/adminHomePage.html";
+    private final String RSE_BROKER_HOME_PAGE_URL = "pages/brokerHomePage/brokerHomePage.html";
     /******************************************************************************/
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws IOException
     {
         response.setContentType("text/html;charset=UTF-8");
         String userNameFromSession = SessionUtils.getUsername(request);
         Users users = ServletsUtils.getUsers(getServletContext());
-        PrintWriter out = response.getWriter();
-
+        //PrintWriter out = response.getWriter();
         String userNameFromParameter = request.getParameter("username");    // gets what the user typed
-        if (userNameFromParameter == null || userNameFromParameter.isEmpty())   // input is empty (error)
-        {
-           request.setAttribute("ERROR", "Missing Information!");
-            //response.setContentType("");
-//            out.println("<script type=\"text/javascript\">");
-//            out.println("alert('Missing information!');");
-//            out.println("</script>");
-            //response.sendRedirect("../../index.html");
-        }
-        else    // input is valid (not empty)
-        {
-            if (userNameFromSession == null)    // user need to sign up (no session exist)
-            {
-                out.println("<script type=\"text/javascript\">");
-                out.println("alert('You need to register to the system');");
-                out.println("</script>");
-                response.sendRedirect(SIGN_UP_URL);
-            }
-            else    // session exist
-                response.sendRedirect(RSE_HOME_PAGE_URL);
-        }
+        String typeFromParameter = request.getParameter("type");
 
+        if (userNameFromSession == null)
+        {
+            // normalize the username value
+            userNameFromParameter = userNameFromParameter.trim();
+
+            synchronized (this)
+            {
+                if (users.isUserExist(userNameFromParameter))
+                {
+                  String errorMessage = "User name " + userNameFromParameter + " already exist. please enter a diffrent user name.";
+                  response.setStatus(401);
+                  response.getOutputStream().println(errorMessage);
+                }
+                else
+                {
+                    if(typeFromParameter.equals("broker"))
+                    {
+                        users.addUser(userNameFromParameter, User.Type.TRADER);
+                        request.getSession(true).setAttribute("username", userNameFromParameter);
+                        request.getSession(true).setAttribute("type", "broker");
+                        response.setStatus(200);
+                        response.getOutputStream().println(RSE_BROKER_HOME_PAGE_URL);
+                    }
+                    else
+                    {
+                        users.addUser(userNameFromParameter, User.Type.ADMIN);
+                        request.getSession(true).setAttribute("username", userNameFromParameter);
+                        request.getSession(true).setAttribute("type", "admin");
+                        response.setStatus(200);
+                        response.getOutputStream().println(RSE_ADMIN_HOME_PAGE_URL);
+                    }
+                }
+            }
+        }
+        else
+        {
+            String typeFromSession = request.getSession().getAttribute("type").toString();
+
+            if(!typeFromSession.equals(typeFromParameter))
+            {
+                String errorMessage = "Wrong role input.";
+                response.setStatus(401);
+                response.getOutputStream().println(errorMessage);
+            }
+            else
+            {
+                if (typeFromParameter.equals("broker"))
+                    response.sendRedirect(RSE_BROKER_HOME_PAGE_URL);
+                else
+                    response.sendRedirect(RSE_BROKER_HOME_PAGE_URL);
+            }
+
+        }
     }
     /******************************************************************************/
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException
+    {
         processRequest(request, response);
     }
     /******************************************************************************/

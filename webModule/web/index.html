@@ -1,28 +1,30 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Ritzpa Stock Exchange</title>
-    <script src="jquery-2.0.3.min.js"></script> <!-- link JQuery -->
-    <link rel="stylesheet" href="index.css">
-</head>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Ritzpa Stock Exchange</title>
+        <script src="jquery-2.0.3.min.js"></script>
+        <script src="index.js"></script>
+    </head>
 
-<body>
-
-    <div class="page">
+    <body>
         <div class="container">
-            <div class="left">
-                <div class="welcomeTitle">Welcome to R$E</div>
-                <div class="welcomeTitleAddition">Ritzpa Stock Exchange</div>
-            </div>
+            <h1 id = "mainTitle">Welcome to R$E</h1>
+            <p id = "subTitle">Ritzpa Stock Exchange</p>
 
-            <div class="right">
-                <button type="button" class="btn" id="logInBtn" onclick="window.location.replace('pages/logIn/logIn.html')">log in</button>
-                <button type="button" class="btn" id="signInBtn" onclick="window.location.replace('pages/signUp/signUp.html')">sign up</button>
-                </div>
-            </div>
+            <form id="loginForm" action="logIn">
+                <label class="lbl">User Name:</label><br>
+                <input type="text" id="userNameTF" name="username" class=""/><br>
+                <label class="lbl">Role:</label><br>
+                <input type="radio" id="bRadio" class="radio" name="type" value="broker">
+                <label class="lbl">Broker</label>
+                <input type="radio" id="aRadio" class="radio" name="type" value="admin">
+                <label class="lbl">Admin</label>
+                <input type="submit" value="log in"/>
+             </form>
+
+            <div id="error-placeholder" class="alert-danger" role="alert"></div>
         </div>
-
-</body>
+    </body>
 </html>

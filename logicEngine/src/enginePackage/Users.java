@@ -1,9 +1,9 @@
 package enginePackage;
 
+import javafx.util.Pair;
+
 import javax.jws.soap.SOAPBinding;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class Users
 {
@@ -13,6 +13,16 @@ public class Users
     public Users() { users = new HashMap<>(); }
     /******************************************************************************/
     public synchronized Collection<User> getUsers() { return this.users.values(); }
+    /******************************************************************************/
+    public synchronized Set<String> getUsersOnline()
+    {
+        Set<String> res = new HashSet<>();
+
+        for(Map.Entry<String, User> e : users.entrySet())
+            res.add("Name: " + e.getKey() + "\n" + "Role: " + e.getValue().getType().toString());
+
+        return res;
+    }
     /******************************************************************************/
     public void clearData() { users.clear(); }
     /******************************************************************************/

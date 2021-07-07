@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>Ritzpa Stock Exchange</title>
+  <script src="../../jquery-2.0.3.min.js"></script>
+  <script src="../../utilsUI/contextPathHelper.js"></script>
+  <script src="brokerHomePage.js"></script>
+</head>
+
+<body>
+  <div id="onlineUsersContainer">
+    <h2 class="opTitle">Online Users</h2>
+    <ul id="usersList"></ul>
+  </div>
+
+  <div id="brokerSet">
+    <h1 id="welcomeTitle"></h1>
+    <label>Current Currency: </label>
+    <lable id="currentCurrency"></lable><br>
+
+    <form id="chargeMoney" method="POST" action="chargeMoneyServlet">
+      <input type="text" name="moneyAmount"/>
+      <input type="submit" value="load $"/>
+    </form><br>
+
+    <table id="userHistory">
+      <tr>
+        <th>Type</th> <!-- buy/sell/load money-->
+        <th>Date</th>
+        <th>Amount</th>
+        <th>currency Before</th>
+        <th>currency After</th>
+      </tr>
+    </table>
+
+    <button type="button" id="loadFileBtn">Load File</button>
+    <button type="button" id="issueStock">Issue Stock</button>
+  </div>
+
+  <div id="stocks">
+    <h2 class="opTitle">Stocks Information</h2>
+    <ul id="stocksList">
+      <!-- each stock is gonna have an HREF to a more informative page about the stock-->
+    </ul>
+  </div>
+
+</body>
+</html>

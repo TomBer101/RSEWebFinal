@@ -1,9 +1,8 @@
 package enginePackage;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
+import DTOs.StockDTO;
 import generated.*;
 
 public class Stocks
@@ -25,5 +24,12 @@ public class Stocks
     // This method will find a stock by its name (SYMBOL).
     // if there is no stock like this the method will return null!
     public synchronized Stock findStock(String symbol) { return stocks.get(symbol); }
+    /******************************************************************************/
+    public synchronized List<StockDTO> getOnlineStocks()
+    {
+        List<StockDTO> res = new ArrayList<>();
+        stocks.forEach((k, s)-> res.add(new StockDTO(s)));
+        return res;
+    }
     /******************************************************************************/
 }

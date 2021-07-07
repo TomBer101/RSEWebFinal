@@ -6,12 +6,33 @@
 
     <servlet-mapping>
         <servlet-name>LoginInServlet</servlet-name>
-        <url-pattern>/pages/logIn/logIn</url-pattern>
+        <url-pattern>/logIn</url-pattern>
     </servlet-mapping>
 
     <servlet>
         <servlet-name>LoginInServlet</servlet-name>
         <servlet-class>servlets.LogInServlet</servlet-class>
     </servlet>
+
+    <servlet-mapping>
+        <servlet-name>UsersListServlet</servlet-name>
+        <url-pattern>/usersList</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>UsersListServlet</servlet-name>
+        <servlet-class>servlets.UsersListServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>StocksDataServlet</servlet-name>
+        <url-pattern>/stocksList</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>StocksDataServlet</servlet-name>
+        <servlet-class>servlets.StocksDataServlets</servlet-class>
+    </servlet>
+
 
 </web-app>
