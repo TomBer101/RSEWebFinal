@@ -59,7 +59,7 @@ public class Commands
                 currAmount = currCmd.getAmountOfStocks();
                 makeTransaction(tradeDescription, transactionsHistory, currCmd, newCmd, currAmount, currPriceLimit);
                 newCmd.getStock().setCurrValue();
-                newCmd.getInitiator().updateHoldings( currAmount, newCmd.getWay(), newCmd.getStock() );
+                newCmd.getInitiator().updateHoldings( currAmount, newCmd.getWay(), newCmd.getStock());
                 currCmd.getInitiator().updateHoldings(currAmount, currCmd.getWay(), newCmd.getStock());
                 itr.remove();
             }
@@ -116,6 +116,30 @@ public class Commands
             commandsMap.put(cmd.getPriceLimit(), new ArrayList<>());
             commandsMap.get(cmd.getPriceLimit()).add(cmd);
         }
+    }
+    /******************************************************************************/
+    public boolean checkFOKCondition(Command cmd, boolean sellOrBuy)
+    {
+        Iterator<Map.Entry<Integer, List<Command>>> itr = commandsMap.entrySet().iterator();
+        Integer tmpAmount = cmd.getAmountOfStocks();
+
+        while (itr.hasNext() && tmpAmount > 0)
+        {
+            Map.Entry<Integer, List<Command>> entry = itr.next();
+
+            if (  (sellOrBuy && entry.getKey() > cmd.getPriceLimit()) ||
+                    (!sellOrBuy && entry.getKey() < cmd.getPriceLimit()))
+                break; // no need to continue to search for match command
+            else
+            {
+                for (Command currCmd : entry.getValue())
+                    tmpAmount -= currCmd.getAmountOfStocks();
+
+                if (tmpAmount <= 0)
+                    return true;
+            }
+        }
+        return false;
     }
     /******************************************************************************/
 }

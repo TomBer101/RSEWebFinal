@@ -1,15 +1,12 @@
 package enginePackage;
 
 import DTOs.TradeDTO;
-
 import java.text.SimpleDateFormat;
 import java.util.Iterator;
 import java.util.List;
 
 public class Command
 {
-
-
     /******************************************************************************/
     public enum Way { BUY, SELL}
     public enum Type { LMT, MKT, FOK, IOC}
@@ -45,6 +42,4 @@ public class Command
     public void substractAmount(int amount) { this.amountOfStocks -= amount;}
     public void setAmount(int newAmount) { this.amountOfStocks = newAmount; }
     /******************************************************************************/
-
-
 }

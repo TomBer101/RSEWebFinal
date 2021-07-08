@@ -69,14 +69,20 @@ public class Stock
     {
         TradeDTO tradeDescription = new TradeDTO(cmd.getAmountOfStocks());
 
+        if (Command.Type.FOK == cmd.getType())
+        {
+            if (((cmd.getWay() == Command.Way.BUY) && !sellCommands.checkFOKCondition(cmd, true))
+            || ((cmd.getWay() == Command.Way.SELL) && !buyCommands.checkFOKCondition(cmd, false)))
+                    return tradeDescription;
+        }
+
         if(cmd.getWay() == Command.Way.BUY) // buy command
             sellCommands.findMatchCmd(cmd, transactionsHistory, true, tradeDescription);
         else    // sell command
             buyCommands.findMatchCmd(cmd, transactionsHistory, false, tradeDescription);
 
         // this.setCurrValue();
-
-        if(cmd.getAmountOfStocks() != 0)   // in case of some of the offer is relevent
+        if(cmd.getAmountOfStocks() != 0 &&  cmd.getType() != Command.Type.IOC)   // in case of some of the offer is relevent
         {
             if(cmd.getWay() == Command.Way.BUY)
                 buyCommands.addCmd(cmd, this.currValue);

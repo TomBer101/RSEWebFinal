@@ -54,3 +54,46 @@ $(function()
     setInterval(ajaxStocksList, refreshRate);
 });
 /******************************************************************************/
+function revelForm ()  {
+    $("#issueStockHolder").hidden = false;
+}
+/******************************************************************************/
+$(function(){
+    $("#issueStockForm").submit(function(){
+
+        var symbol = document.getElementsByName("symbol");
+        var companyName = document.getElementsByName("companyName");
+        var stockAmount = document.getElementsByName("stockAmount");
+        var companyVal = document.getElementById("companyValue");
+
+        if(symbol.value.length === 0 || companyVal.value.length === 0 ||
+            companyName.value.length === 0 || stockAmount.value.length === 0)
+            $('error-holder').append("Missing Information");
+        if(stockAmount.value == 0)
+            $('error-holder').append("Amount of stocks should be grater then zero");
+        else{
+            $.ajax({
+                data:$(this).serialize(),
+                url:this.action,
+                timeout:2000,
+                error: function(errorObject)
+                {
+                    console.error("Failed to add Stock!");
+                    $("#error-holder").append(errorObject.responseText);
+                },
+                success:function()
+                {
+                    $('#issueStockHolder').hidden = true;
+                }
+            });
+        }
+
+    })
+    }
+)
+/******************************************************************************/
+function cancelForm()
+{
+    $('#issueStockHolder').hidden = true;
+}
+/******************************************************************************/

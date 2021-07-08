@@ -35,7 +35,25 @@
     </table>
 
     <button type="button" id="loadFileBtn">Load File</button>
-    <button type="button" id="issueStock">Issue Stock</button>
+    <button type="button" id="issueStock" onclick="revelForm()">Issue Stock</button>
+
+    <div hidden id="issueStockHolder">
+      <form id="issueStockForm" method = "POST" action="issueStock">
+        <label class="lbl">Company name: </label>
+        <input type="text" name="companyName"/><br>
+        <label class="lbl">Symbol: </label>
+        <input type="text" name="symbol"/><br>
+        <label class="lbl">Stocks amount: </label>
+        <input type="text" name="stocksAmount"/><br>
+        <label class="lbl">Company value: </label>
+        <input type="text" name="companyValue"/>
+        <button type="button" onclick= "cancelForm()">Cancel</button>
+        <input type="submit" value="Issue">
+      </form>
+
+      <div id = "error-holder"></div>
+
+    </div>
   </div>
 
   <div id="stocks">
