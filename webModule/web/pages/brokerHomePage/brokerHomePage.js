@@ -63,6 +63,7 @@ function revelForm ()  {
 $(function(){
     $("#issueStockForm").submit(function(){
 
+        $('error-holder').clear();
         var symbol = document.getElementById("symbol");
         var companyName = document.getElementById("companyName");
         var stockAmount = document.getElementById("stocksAmount");
@@ -87,12 +88,11 @@ $(function(){
                 },
                 success:function(r)
                 {
-                    $('#issueStockHolder').hidden = true;
+                   // $('#issueStockHolder').hidden = true;
                 }
             });
-            return false;
-
         }
+        return false;
     });
     });
 /******************************************************************************/
