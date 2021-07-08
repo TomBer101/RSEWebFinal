@@ -43,7 +43,7 @@ function ajaxStocksList()
         dataType: 'json',
         success: function(stocks)
         {
-            refreshStocksList(users);
+            refreshStocksList(stocks);
         }
     })
 }
@@ -55,15 +55,17 @@ $(function()
 });
 /******************************************************************************/
 function revelForm ()  {
-    $("#issueStockHolder").hidden = false;
+    //$("#issueStockHolder").hidden = false;
+    var x = document.getElementById("issueStockHolder");
+    x.style.displey = 'block';
 }
 /******************************************************************************/
 $(function(){
     $("#issueStockForm").submit(function(){
 
-        var symbol = document.getElementsByName("symbol");
-        var companyName = document.getElementsByName("companyName");
-        var stockAmount = document.getElementsByName("stockAmount");
+        var symbol = document.getElementById("symbol");
+        var companyName = document.getElementById("companyName");
+        var stockAmount = document.getElementById("stocksAmount");
         var companyVal = document.getElementById("companyValue");
 
         if(symbol.value.length === 0 || companyVal.value.length === 0 ||
@@ -83,19 +85,24 @@ $(function(){
                     console.error("Failed to add Stock!");
                     $("#error-holder").append(errorObject.responseText);
                 },
-                success:function()
+                success:function(r)
                 {
                     $('#issueStockHolder').hidden = true;
                 }
             });
-        }
+            return false;
 
-    })
-    }
-)
+        }
+    });
+    });
 /******************************************************************************/
 function cancelForm()
 {
     $('#issueStockHolder').hidden = true;
 }
 /******************************************************************************/
+//$(function()
+//{
+   // $("#issueStockHolder").style.display = 'block';
+
+//})

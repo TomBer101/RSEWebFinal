@@ -46,7 +46,7 @@ public class LogInServlet extends HttpServlet
                     if(typeFromParameter.equals("broker"))
                     {
                         users.addUser(userNameFromParameter, User.Type.TRADER);
-                        request.getSession(true).setAttribute("username", userNameFromParameter);
+                        request.getSession(true).setAttribute("userName", userNameFromParameter);
                         request.getSession(true).setAttribute("type", "broker");
                         response.setStatus(200);
                         response.getOutputStream().println(RSE_BROKER_HOME_PAGE_URL);
@@ -54,7 +54,7 @@ public class LogInServlet extends HttpServlet
                     else
                     {
                         users.addUser(userNameFromParameter, User.Type.ADMIN);
-                        request.getSession(true).setAttribute("username", userNameFromParameter);
+                        request.getSession(true).setAttribute("userName", userNameFromParameter);
                         request.getSession(true).setAttribute("type", "admin");
                         response.setStatus(200);
                         response.getOutputStream().println(RSE_ADMIN_HOME_PAGE_URL);

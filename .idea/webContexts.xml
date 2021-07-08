@@ -4,6 +4,7 @@
     <option name="state">
       <map>
         <entry key="file://$PROJECT_DIR$/webModule/web/index.html" value="file://$PROJECT_DIR$/webModule/web" />
+        <entry key="file://$PROJECT_DIR$/webModule/web/pages/brokerHomePage/brokerHomePage.html" value="file://$PROJECT_DIR$/webModule/web/pages/brokerHomePage" />
       </map>
     </option>
   </component>

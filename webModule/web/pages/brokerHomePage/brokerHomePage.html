@@ -35,19 +35,19 @@
     </table>
 
     <button type="button" id="loadFileBtn">Load File</button>
-    <button type="button" id="issueStock" onclick="revelForm()">Issue Stock</button>
+    <button type="button" id="issueStock" onclick="document.getElementById('issueStockHolder').style.display='block'">Issue</button>
 
-    <div hidden id="issueStockHolder">
-      <form id="issueStockForm" method = "POST" action="issueStock">
+    <div  id="issueStockHolder" style="display:none">
+      <form id="issueStockForm" method = "POST" action="IssueStock">
         <label class="lbl">Company name: </label>
-        <input type="text" name="companyName"/><br>
+        <input type="text" name="companyName" id="companyName"/><br>
         <label class="lbl">Symbol: </label>
-        <input type="text" name="symbol"/><br>
+        <input type="text" name="symbol" id="symbol"/><br>
         <label class="lbl">Stocks amount: </label>
-        <input type="text" name="stocksAmount"/><br>
+        <input type="text" name="stocksAmount" id="stocksAmount"/><br>
         <label class="lbl">Company value: </label>
-        <input type="text" name="companyValue"/>
-        <button type="button" onclick= "cancelForm()">Cancel</button>
+        <input type="text" name="companyValue" id="companyValue"/>
+        <button type="button" onclick= "document.getElementById('issueStockHolder').style.display='none'">Cancel</button>
         <input type="submit" value="Issue">
       </form>
 

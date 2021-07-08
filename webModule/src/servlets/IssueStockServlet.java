@@ -14,8 +14,9 @@ import java.io.IOException;
 public class IssueStockServlet extends HttpServlet
 {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.setContentType("text/html;charset=UTF-8");
+       //response.setContentType("text/html;charset=UTF-8");
         Stocks stocks = ServletsUtils.getStocks(getServletContext());
+
         String symbolFromParameter = request.getParameter("symbol");
         String companyNameFromParameter = request.getParameter("companyName");
 
@@ -30,16 +31,20 @@ public class IssueStockServlet extends HttpServlet
         }
         else
         {
+
             int amountOfStock =  Integer.parseInt(request.getParameter("stocksAmount"));
             int companyVal =  Integer.parseInt(request.getParameter("companyValue"));
+            synchronized (getServletContext())
+            {
+                stocks.addStock(symbolFromParameter, companyNameFromParameter,
+                        amountOfStock, companyVal);
 
-            stocks.addStock(symbolFromParameter, companyNameFromParameter,
-                   amountOfStock, companyVal);
+                String userNameFromSession = SessionUtils.getUsername(request);
+                Users users = ServletsUtils.getUsers(getServletContext());
 
-            String userNameFromSession = SessionUtils.getUsername(request);
-            Users users = ServletsUtils.getUsers(getServletContext());
+                users.addStock2User(userNameFromSession, symbolFromParameter, amountOfStock, companyVal );
+            }
 
-            users.addStock2User(userNameFromSession, symbolFromParameter, amountOfStock, companyVal );
         }
 
     }

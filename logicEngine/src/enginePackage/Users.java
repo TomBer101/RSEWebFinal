@@ -38,6 +38,10 @@ public class Users
     /******************************************************************************/
     public void addStock2User(String userName, String symbol, int amountOfStocks, int companyVal)
     {
+        System.out.println(userName);
+        User tmp = users.get(userName);
+        if(tmp == null)
+            System.out.println("user is null!");
         users.get(userName).getHoldings().add2Holdings(symbol, amountOfStocks, companyVal);
     }
     /******************************************************************************/
