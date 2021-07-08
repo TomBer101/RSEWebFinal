@@ -36,4 +36,9 @@ public class Users
          return users.containsKey(userName);
      }
     /******************************************************************************/
+    public void addStock2User(String userName, String symbol, int amountOfStocks, int companyVal)
+    {
+        users.get(userName).getHoldings().add2Holdings(symbol, amountOfStocks, companyVal);
+    }
+    /******************************************************************************/
 }

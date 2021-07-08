@@ -34,6 +34,16 @@
         <servlet-class>servlets.StocksDataServlets</servlet-class>
     </servlet>
 
+    <servlet-mapping>
+        <servlet-name>IssueStockServlet</servlet-name>
+        <url-pattern>/pages/brokerHomePage/IssueStock</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>IssueStockServlet</servlet-name>
+        <servlet-class>servlets.IssueStockServlet</servlet-class>
+    </servlet>
+
 
 
 </web-app>

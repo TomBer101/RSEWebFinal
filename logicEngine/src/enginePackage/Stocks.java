@@ -32,4 +32,23 @@ public class Stocks
         return res;
     }
     /******************************************************************************/
+    public synchronized boolean isStockExists(String symbol, String companyName)
+    {
+        if(stocks.containsKey(symbol))
+            return true;
+
+        for(Stock currStock : stocks.values())
+        {
+            if(currStock.getCompanyName().equals(companyName))
+                return true;
+        }
+
+        return false;
+    }
+    /******************************************************************************/
+    public synchronized void addStock(String symbol, String companyName, int amount, int companyValue)
+    {
+        stocks.put(symbol, new Stock(companyName, symbol, companyValue/amount));
+    }
+    /******************************************************************************/
 }

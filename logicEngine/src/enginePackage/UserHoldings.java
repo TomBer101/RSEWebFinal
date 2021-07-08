@@ -44,12 +44,18 @@ public class UserHoldings
             itemsList.add(new Item(symbol, stockAmount, newPriceLimit));
     }
     /******************************************************************************/
-    public void updateTotalValueHoldings()
+    private void updateTotalValueHoldings()
     {
         totalValueHoldings = 0;
 
         for (Item item : itemsList)
             totalValueHoldings += (item.getItemValue() * item.getQuantity());
+    }
+    /******************************************************************************/
+    public void add2Holdings(String symbol, int amountOfStocks, int companyVal)
+    {
+        itemsList.add(new Item(symbol, amountOfStocks,companyVal/amountOfStocks));
+        updateTotalValueHoldings();
     }
     /******************************************************************************/
 }
