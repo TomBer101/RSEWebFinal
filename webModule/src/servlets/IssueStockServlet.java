@@ -14,7 +14,8 @@ import java.io.IOException;
 
 public class IssueStockServlet extends HttpServlet
 {
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws IOException
+    {
        //response.setContentType("text/html;charset=UTF-8");
         Stocks stocks = ServletsUtils.getStocks(getServletContext());
 

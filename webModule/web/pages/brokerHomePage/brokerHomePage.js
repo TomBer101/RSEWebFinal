@@ -61,9 +61,10 @@ function revelForm ()  {
 }
 /******************************************************************************/
 $(function(){
-    $("#issueStockForm").submit(function(){
+    $("#issueStockForm").submit(function()
+    {
 
-        $('error-holder').clear();
+        //$('error-holder').clear();
         var symbol = document.getElementById("symbol");
         var companyName = document.getElementById("companyName");
         var stockAmount = document.getElementById("stocksAmount");
@@ -75,8 +76,8 @@ $(function(){
         // Check we got integers where is needed. TODO
         if(stockAmount.value == 0)
             $('error-holder').append("Amount of stocks should be grater then zero");
-
-        else{
+        else
+        {
             $.ajax({
                 data:$(this).serialize(),
                 url:this.action,
@@ -86,23 +87,18 @@ $(function(){
                     console.error("Failed to add Stock!");
                     $("#error-holder").append(errorObject.responseText);
                 },
-                success:function(r)
+                success: function(r)
                 {
-                   // $('#issueStockHolder').hidden = true;
+
                 }
             });
+            return false;
         }
-        return false;
     });
-    });
+});
 /******************************************************************************/
 function cancelForm()
 {
     $('#issueStockHolder').hidden = true;
 }
 /******************************************************************************/
-//$(function()
-//{
-   // $("#issueStockHolder").style.display = 'block';
-
-//})
