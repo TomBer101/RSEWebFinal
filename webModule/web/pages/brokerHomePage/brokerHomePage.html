@@ -14,25 +14,32 @@
     <ul id="usersList"></ul>
   </div>
 
+  <!-- TODO welcome title -->
+  <!-- TODO delete error after new one -->
   <div id="brokerSet">
     <h1 id="welcomeTitle"></h1>
     <label>Current Currency: </label>
-    <lable id="currentCurrency"></lable><br>
+    <label id="currentCurrency"></label><br>
 
-    <form id="chargeMoney" method="POST" action="chargeMoneyServlet">
-      <input type="text" name="moneyAmount"/>
+    <form id="chargeMoney" method="POST" action="chargeMoney">
+      <input type="number" id="moneyAmount" name="moneyAmount"/>
       <input type="submit" value="load $"/>
     </form><br>
 
     <table id="userHistory">
-      <tr>
-        <th>Type</th> <!-- buy/sell/load money-->
-        <th>Date</th>
-        <th>Amount</th>
-        <th>currency Before</th>
-        <th>currency After</th>
-      </tr>
+        <thead>
+          <tr>
+              <th>Type</th> <!-- buy/sell/load money-->
+              <th>Date</th>
+              <th>Amount</th>
+              <th>currency Before</th>
+              <th>currency After</th>
+              <th>symbol</th>
+          </tr>
+        </thead>
+        <tbody id="userHistoryTb"></tbody>
     </table>
+
 
     <button type="button" id="loadFileBtn">Load File</button>
     <button type="button" id="issueStock" onclick="document.getElementById('issueStockHolder').style.display='block'">Issue</button>
@@ -44,16 +51,14 @@
         <label class="lbl">Symbol: </label>
         <input type="text" name="symbol" id="symbol"/><br>
         <label class="lbl">Stocks amount: </label>
-        <input type="text" name="stocksAmount" id="stocksAmount"/><br>
+        <input type="number" name="stocksAmount" id="stocksAmount"/><br>
         <label class="lbl">Company value: </label>
-        <input type="text" name="companyValue" id="companyValue"/>
+        <input type="number" name="companyValue" id="companyValue"/>
         <button type="button" onclick= "document.getElementById('issueStockHolder').style.display='none'">Cancel</button>
         <input type="submit" value="Issue"/>
       </form>
-
-      <div id = "error-holder"></div>
-
     </div>
+    <div id="error-holder"></div>
   </div>
 
   <div id="stocks">

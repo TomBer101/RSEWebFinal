@@ -1,5 +1,11 @@
 package enginePackage;
 
+import DTOs.UserDataDTO;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
+
 public class User
 {
     /******************************************************************************/
@@ -7,6 +13,8 @@ public class User
     /******************************************************************************/
     private String name;
     private UserHoldings holdings;
+    private List<Action> actionsHistory;
+    private int cashMoney = 0;
     private Type type;
     /******************************************************************************/
     public User(String name, Type type)
@@ -14,17 +22,47 @@ public class User
         if (type == Type.TRADER)
             holdings = new UserHoldings();
         this.name = name;
+        this.actionsHistory = new ArrayList<>();
         this.type = type;
     }
     /******************************************************************************/
     public String getName() { return name; }
     public UserHoldings getHoldings() { return holdings; }
     public Type getType() { return type; }
+    public int getCashMoney() { return this.cashMoney; }
     /******************************************************************************/
     public void updateHoldings(int stockAmount, Command.Way way, Stock stock)
     {
+        String date = new SimpleDateFormat("yyyy-MM-dd HH.mm.ss.SSS").format(new java.util.Date());
+        int oldCashMoney = this.cashMoney;
+
         holdings.updateHoldings(stock.getSymbol(), stockAmount, stock.getCurrValue(), way);
+
+        if (way == Command.Way.BUY)
+        {
+            this.cashMoney -= (stockAmount * stock.getCurrValue());
+            addAction(Action.Type.BUY, date, stockAmount, oldCashMoney, this.cashMoney, stock.getSymbol());
+        }
+        else
+        {
+            this.cashMoney += (stockAmount * stock.getCurrValue());
+            addAction(Action.Type.SELL, date, stockAmount, oldCashMoney, this.cashMoney, stock.getSymbol());
+        }
+
     }
     /******************************************************************************/
-
+    public void addCashMoney(int cashMoney)
+    {
+        String date = new SimpleDateFormat("yyyy-MM-dd HH.mm.ss.SSS").format(new java.util.Date());
+        addAction(Action.Type.LOADMONEY, date, cashMoney, this.cashMoney, this.cashMoney + cashMoney, "-");
+        this.cashMoney += cashMoney;
+    }
+    /******************************************************************************/
+    private void addAction(Action.Type type, String date, int amount,  int currencyBefore, int currencyAfter, String symbol)
+    {
+        this.actionsHistory.add(new Action(type, date, amount, currencyBefore, currencyAfter, symbol));
+    }
+    /******************************************************************************/
+    public UserDataDTO userToDTO() { return new UserDataDTO(this.cashMoney, this.actionsHistory); }
+    /******************************************************************************/
 }

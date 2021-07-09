@@ -59,7 +59,7 @@ public class Commands
                 currAmount = currCmd.getAmountOfStocks();
                 makeTransaction(tradeDescription, transactionsHistory, currCmd, newCmd, currAmount, currPriceLimit);
                 newCmd.getStock().setCurrValue();
-                newCmd.getInitiator().updateHoldings( currAmount, newCmd.getWay(), newCmd.getStock());
+                newCmd.getInitiator().updateHoldings(currAmount, newCmd.getWay(), newCmd.getStock());
                 currCmd.getInitiator().updateHoldings(currAmount, currCmd.getWay(), newCmd.getStock());
                 itr.remove();
             }

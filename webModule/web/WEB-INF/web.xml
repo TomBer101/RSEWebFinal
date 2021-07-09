@@ -44,6 +44,25 @@
         <servlet-class>servlets.IssueStockServlet</servlet-class>
     </servlet>
 
+    <servlet-mapping>
+        <servlet-name>UserDataServlet</servlet-name>
+        <url-pattern>/userData</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>UserDataServlet</servlet-name>
+        <servlet-class>servlets.UserDataServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>ChargeMoneyServlet</servlet-name>
+        <url-pattern>/pages/brokerHomePage/chargeMoney</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ChargeMoneyServlet</servlet-name>
+        <servlet-class>servlets.ChargeMoneyServlet</servlet-class>
+    </servlet>
 
 
 </web-app>

@@ -2,6 +2,7 @@
 var refreshRate = 2000; // milli seconds
 var USER_LIST_SERVLET_URL = buildUrlWithContextPath("usersList");
 var STOCK_LIST_SERVLET_URL = buildUrlWithContextPath("stocksList");
+var USER_DATA_SERVLET_URL = buildUrlWithContextPath("userData");
 /******************************************************************************/
 function refreshUsersList(users)
 {
@@ -14,6 +15,37 @@ function refreshUsersList(users)
     });
 }
 /******************************************************************************/
+function refreshUserData(userData)
+{
+    $("#currentCurrency").empty();
+    $("#currentCurrency").append(userData.currency);
+
+
+    var tableBodyElement = document.getElementById("userHistoryTb");
+
+    if (tableBodyElement.length !== 1)
+        $("#userHistoryTb").empty();
+
+    userData.actionHistory.forEach( action =>
+    {
+        var newRow =  tableBodyElement.insertRow(-1);
+
+        var typeCell = newRow.insertCell(0);
+        var dateCell = newRow.insertCell(1);
+        var amountCell = newRow.insertCell(2);
+        var currencyBeforeCell = newRow.insertCell(3);
+        var currencyAfterCell = newRow.insertCell(4);
+        var symbolCell = newRow.insertCell(5);
+
+        typeCell.innerHTML = action.type;
+        dateCell.innerHTML = action.date;
+        amountCell.innerHTML = action.amount;
+        currencyBeforeCell.innerHTML = action.currencyBefore;
+        currencyAfterCell.innerHTML = action.currencyAfter;
+        symbolCell.innerHTML = action.symbol;
+    })
+}
+/******************************************************************************/
 function refreshStocksList(stocks)
 {
     $('#stocksList').empty();
@@ -21,7 +53,7 @@ function refreshStocksList(stocks)
     $.each(stocks || [], function (index, stock)
     {
        $('<li id=' + stock.symbol + ">" + "Symbol: " + stock.symbol + "<br>" + "Company: " + stock.companyName + "<br> Value: "
-           + stock.currValue + "<br> Cycle: " + stock.transactionCycle + "</li>").appendTo($('#stocksList'));
+           + stock.currValue + "<br> Cycle: " + stock. transactionsCycle + "</li>").appendTo($('#stocksList'));
     });
 }
 /******************************************************************************/
@@ -32,6 +64,17 @@ function ajaxUsersList()
         success: function(users)
         {
             refreshUsersList(users);
+        }
+    })
+}
+/******************************************************************************/
+function ajaxUserData()
+{
+    $.ajax({
+        url: USER_DATA_SERVLET_URL,
+        success: function(data)
+        {
+            refreshUserData(data);
         }
     })
 }
@@ -52,19 +95,14 @@ $(function()
 {
     setInterval(ajaxUsersList, refreshRate);
     setInterval(ajaxStocksList, refreshRate);
+    setInterval(ajaxUserData, refreshRate);
 });
 /******************************************************************************/
-function revelForm ()  {
-    //$("#issueStockHolder").hidden = false;
-    var x = document.getElementById("issueStockHolder");
-    x.style.displey = 'block';
-}
-/******************************************************************************/
 $(function(){
+    var d = document.getElementById("issueStockHolder");
     $("#issueStockForm").submit(function()
     {
-
-        //$('error-holder').clear();
+       // $("#error-holder").clear();
         var symbol = document.getElementById("symbol");
         var companyName = document.getElementById("companyName");
         var stockAmount = document.getElementById("stocksAmount");
@@ -78,6 +116,7 @@ $(function(){
             $('error-holder').append("Amount of stocks should be grater then zero");
         else
         {
+
             $.ajax({
                 data:$(this).serialize(),
                 url:this.action,
@@ -89,7 +128,8 @@ $(function(){
                 },
                 success: function(r)
                 {
-
+                    $("#issueStockForm")[0].reset();
+                   d.style.display = "none";
                 }
             });
             return false;
@@ -97,8 +137,32 @@ $(function(){
     });
 });
 /******************************************************************************/
-function cancelForm()
-{
-    $('#issueStockHolder').hidden = true;
-}
+$(function() {
+    $("#chargeMoney").submit(function()
+    {
+      //  $('#error-holder').clear();
+        var moneyAmount = document.getElementById("moneyAmount");
+
+        if(moneyAmount.value.length === 0)
+            $('error-holder').append("Missing Information");
+        else
+        {
+            $.ajax({
+                data: $(this).serialize(),
+                url: this.action,
+                timeout: 2000,
+                error: function(errorObject)
+                {
+                    console.error("Failed to load Money!");
+                    $("#error-holder").append(errorObject.responseText);
+                },
+                success: function(r)
+                {
+                    $('#chargeMoney')[0].reset();
+                }
+            });
+            return false;
+        }
+    });
+});
 /******************************************************************************/

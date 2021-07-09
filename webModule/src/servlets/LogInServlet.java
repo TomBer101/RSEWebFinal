@@ -24,7 +24,6 @@ public class LogInServlet extends HttpServlet
         response.setContentType("text/html;charset=UTF-8");
         String userNameFromSession = SessionUtils.getUsername(request);
         Users users = ServletsUtils.getUsers(getServletContext());
-        //PrintWriter out = response.getWriter();
         String userNameFromParameter = request.getParameter("username");    // gets what the user typed
         String typeFromParameter = request.getParameter("type");
 

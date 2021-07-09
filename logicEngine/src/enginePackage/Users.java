@@ -1,5 +1,6 @@
 package enginePackage;
 
+import DTOs.UserDataDTO;
 import javafx.util.Pair;
 
 import javax.jws.soap.SOAPBinding;
@@ -43,6 +44,16 @@ public class Users
         if(tmp == null)
             System.out.println("user is null!");
         users.get(userName).getHoldings().add2Holdings(symbol, amountOfStocks, companyVal);
+    }
+    /******************************************************************************/
+    public void addCashToUser(String userName, int amount)
+    {
+        users.get(userName).addCashMoney(amount);
+    }
+    /******************************************************************************/
+    public UserDataDTO userToDTO(String userName)
+    {
+        return users.get(userName).userToDTO();
     }
     /******************************************************************************/
 }
