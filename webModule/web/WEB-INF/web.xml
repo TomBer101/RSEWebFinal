@@ -64,5 +64,15 @@
         <servlet-class>servlets.ChargeMoneyServlet</servlet-class>
     </servlet>
 
+    <servlet-mapping>
+        <servlet-name>uploadFileServlet</servlet-name>
+        <url-pattern>/pages/brokerHomePage/uploadFile</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>uploadFileServlet</servlet-name>
+        <servlet-class>servlets.filesServlets.FileUploadServlet</servlet-class>
+    </servlet>
+
 
 </web-app>

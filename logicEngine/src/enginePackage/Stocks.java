@@ -14,9 +14,13 @@ public class Stocks
     /******************************************************************************/
     public synchronized Collection<Stock> getStocks() { return stocks.values(); }
     /******************************************************************************/
-    public synchronized void loadData(RseStocks xmlStocks)
+    public synchronized void loadData(RseStocks xmlStocks) // changes for part 3
     {
-        xmlStocks.getRseStock().forEach((s)->stocks.put(s.getRseSymbol(), new Stock(s)));
+        //This method loads only new stocks from an uploaded file.
+        xmlStocks.getRseStock().forEach((s)->{
+            if(!stocks.containsKey(s.getRseSymbol()))
+                stocks.put(s.getRseSymbol(), new Stock(s));
+        });
     }
     /******************************************************************************/
     public synchronized void clearData() { stocks.clear(); }

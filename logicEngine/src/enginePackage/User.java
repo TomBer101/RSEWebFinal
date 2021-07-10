@@ -6,6 +6,11 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import generated.RseItem;
+
+import java.util.Collection;
+import java.util.List;
+
 public class User
 {
     /******************************************************************************/
@@ -56,6 +61,17 @@ public class User
         String date = new SimpleDateFormat("yyyy-MM-dd HH.mm.ss.SSS").format(new java.util.Date());
         addAction(Action.Type.LOADMONEY, date, cashMoney, this.cashMoney, this.cashMoney + cashMoney, "-");
         this.cashMoney += cashMoney;
+    }
+    /******************************************************************************/
+    public void addStocks(List<RseItem> rseItem, Stocks stocks)
+    {
+        for (RseItem I : rseItem) {
+            holdings.updateHoldings(I.getSymbol(),
+                    I.getQuantity(),
+                    stocks.findStock(I.getSymbol()).getCurrValue(),
+                    Command.Way.BUY
+                    );
+        }
     }
     /******************************************************************************/
     private void addAction(Action.Type type, String date, int amount,  int currencyBefore, int currencyAfter, String symbol)

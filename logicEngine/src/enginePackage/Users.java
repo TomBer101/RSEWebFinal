@@ -1,5 +1,6 @@
 package enginePackage;
 
+import generated.RseItem;
 import DTOs.UserDataDTO;
 import javafx.util.Pair;
 
@@ -54,6 +55,12 @@ public class Users
     public UserDataDTO userToDTO(String userName)
     {
         return users.get(userName).userToDTO();
+    }
+    /******************************************************************************/
+    public void addStocks(String username, List<RseItem> rseItem, Stocks stocks)
+    {
+        // This method add to user his stocks from a file - after validation!
+        users.get(username).addStocks(rseItem, stocks);
     }
     /******************************************************************************/
 }

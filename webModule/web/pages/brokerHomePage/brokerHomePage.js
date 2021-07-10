@@ -111,7 +111,7 @@ $(function(){
         if(symbol.value.length === 0 || companyVal.value.length === 0 ||
             companyName.value.length === 0 || stockAmount.value.length === 0)
             $('error-holder').append("Missing Information");
-        // Check we got integers where is needed. TODO
+
         if(stockAmount.value == 0)
             $('error-holder').append("Amount of stocks should be grater then zero");
         else
@@ -144,7 +144,7 @@ $(function() {
         var moneyAmount = document.getElementById("moneyAmount");
 
         if(moneyAmount.value.length === 0)
-            $('error-holder').append("Missing Information");
+            $('error-holder').append("Missing Information"); // TODO : more informative message?
         else
         {
             $.ajax({
@@ -165,4 +165,6 @@ $(function() {
         }
     });
 });
+/******************************************************************************/
+
 /******************************************************************************/

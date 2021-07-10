@@ -18,6 +18,7 @@ public class IssueStockServlet extends HttpServlet
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws IOException
     {
        //response.setContentType("text/html;charset=UTF-8");
+       response.setContentType("application/javascript");
         Stocks stocks = ServletsUtils.getStocks(getServletContext());
 
         String symbolFromParameter = request.getParameter("symbol");
@@ -34,7 +35,6 @@ public class IssueStockServlet extends HttpServlet
         }
         else
         {
-
             int amountOfStock =  Integer.parseInt(request.getParameter("stocksAmount"));
             int companyVal =  Integer.parseInt(request.getParameter("companyValue"));
             synchronized (getServletContext())
