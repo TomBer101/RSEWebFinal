@@ -46,6 +46,27 @@ function refreshUserData(userData)
     })
 }
 /******************************************************************************/
+function showStock(symbol)
+{
+    $.ajax({
+        data: "symbol=" + symbol,
+        url:"StockInfoServlet",
+        method: "GET",
+        timeout: 2000,
+        error: function()
+        {
+            console.error("Should not have reach here");
+        },
+        success: function (nextPageUrl)
+        {
+            window.location.replace(nextPageUrl);
+        }
+    });
+
+    // By default - we will always return false
+    return false;
+}
+/******************************************************************************/
 function refreshStocksList(stocks)
 {
     $('#stocksList').empty();
@@ -116,6 +137,7 @@ $(function(){
             $('error-holder').append("Amount of stocks should be grater then zero");
         else
         {
+
             $.ajax({
                 data:$(this).serialize(),
                 url:this.action,
@@ -143,7 +165,7 @@ $(function() {
         var moneyAmount = document.getElementById("moneyAmount");
 
         if(moneyAmount.value.length === 0)
-            $('#error-holder').append("Missing Information"); // TODO : more informative message?
+            $('error-holder').append("Missing Information"); // TODO : more informative message?
         else
         {
             $.ajax({

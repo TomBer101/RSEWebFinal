@@ -81,4 +81,10 @@ public class User
     /******************************************************************************/
     public UserDataDTO userToDTO() { return new UserDataDTO(this.cashMoney, this.actionsHistory); }
     /******************************************************************************/
+    public int getStockAmount(String chosenStock)
+    {
+        return holdings.getStockAmount(chosenStock);
+    }
+    /******************************************************************************/
+
 }

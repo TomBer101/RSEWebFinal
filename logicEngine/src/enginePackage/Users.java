@@ -63,4 +63,9 @@ public class Users
         users.get(username).addStocks(rseItem, stocks);
     }
     /******************************************************************************/
+    public int getAmountOfStock(String userName, String chosenStock)
+    {
+       return users.get(userName).getStockAmount(chosenStock);
+    }
+    /******************************************************************************/
 }

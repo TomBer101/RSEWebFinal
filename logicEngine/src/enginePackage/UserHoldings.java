@@ -58,4 +58,16 @@ public class UserHoldings
         updateTotalValueHoldings();
     }
     /******************************************************************************/
+    public int getStockAmount(String chosenStock)
+    {
+        for(Item curr : itemsList)
+        {
+            if(curr.getSymbol().equals(chosenStock))
+            {
+                return curr.getQuantity();
+            }
+        }
+        return 0;
+    }
+    /******************************************************************************/
 }

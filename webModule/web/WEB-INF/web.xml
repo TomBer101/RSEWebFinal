@@ -84,4 +84,14 @@
         <servlet-class>servlets.StockInfoUpdateAdminServlet</servlet-class>
     </servlet>
 
+    <servlet-mapping>
+        <servlet-name>StockInfo4Broker</servlet-name>
+        <url-pattern>/StockData4Broker</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>StockInfo4Broker</servlet-name>
+        <servlet-class>servlets.StockInfoUpdateBrokerServlet</servlet-class>
+    </servlet>
+
 </web-app>
