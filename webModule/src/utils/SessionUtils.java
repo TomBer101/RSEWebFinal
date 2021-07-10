@@ -14,6 +14,13 @@ public class SessionUtils
         return sessionAtribute != null ? sessionAtribute.toString() : null;
     }
     /******************************************************************************/
+    public static String getChosenStock(HttpServletRequest request)
+    {
+        HttpSession session = request.getSession(false);
+        Object sessionAtribute = session != null ? session.getAttribute("chosenStock") : null;
+        return sessionAtribute != null ? sessionAtribute.toString() : null;
+    }
+    /******************************************************************************/
     public static void clearSession(HttpServletRequest request) { request.getSession().invalidate(); }
     /******************************************************************************/
 }
