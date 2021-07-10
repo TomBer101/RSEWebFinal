@@ -16,8 +16,8 @@ public class Stocks
     /******************************************************************************/
     public synchronized void loadData(RseStocks xmlStocks) // changes for part 3
     {
-        //This method loads only new stocks from an uploaded file.
-        xmlStocks.getRseStock().forEach((s)->{
+        // This method loads only new stocks from an uploaded file.
+        xmlStocks.getRseStock().forEach((s) -> {
             if(!stocks.containsKey(s.getRseSymbol()))
                 stocks.put(s.getRseSymbol(), new Stock(s));
         });
@@ -53,6 +53,11 @@ public class Stocks
     public synchronized void addStock(String symbol, String companyName, int amount, int companyValue)
     {
         stocks.put(symbol, new Stock(companyName, symbol, companyValue/amount));
+    }
+    /******************************************************************************/
+    public StockDTO stockToDTO(String symbol)
+    {
+        return new StockDTO(stocks.get(symbol));
     }
     /******************************************************************************/
 }

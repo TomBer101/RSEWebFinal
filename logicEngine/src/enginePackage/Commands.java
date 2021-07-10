@@ -1,6 +1,6 @@
 package enginePackage;
 
-import DTOs.TradeDTO;
+import DTOs.CommandDTO;
 
 import java.util.*;
 
@@ -22,7 +22,7 @@ public class Commands
     /******************************************************************************/
     public Map<Integer, List<Command>> getCommandsMap() { return commandsMap; }
     /******************************************************************************/
-    public void findMatchCmd(Command newCmd, List<Trade> transactionHistory, boolean sellOrBuy, TradeDTO tradeDescription)
+    public void findMatchCmd(Command newCmd, List<Trade> transactionHistory, boolean sellOrBuy, CommandDTO tradeDescription)
     {
         Iterator<Map.Entry<Integer, List<Command>>> itr = commandsMap.entrySet().iterator();
 
@@ -43,7 +43,7 @@ public class Commands
         }
     }
     /******************************************************************************/
-    public void findMatchCmdHelper(Command newCmd, List<Command> cmds, List<Trade> transactionsHistory, TradeDTO tradeDescription)
+    public void findMatchCmdHelper(Command newCmd, List<Command> cmds, List<Trade> transactionsHistory, CommandDTO tradeDescription)
     {
         Iterator<Command> itr = cmds.iterator();
         int currAmount, currPriceLimit;
@@ -76,13 +76,13 @@ public class Commands
         }
     }
     /******************************************************************************/
-    public void makeTransaction(TradeDTO tradeDescription, List<Trade> transactionHistory, Command currCmd, Command newCmd, int currAmount, int currPriceLimit)
+    public void makeTransaction(CommandDTO tradeDescription, List<Trade> transactionHistory, Command currCmd, Command newCmd, int currAmount, int currPriceLimit)
     {
         String buyer = findBuyer(currCmd, newCmd);
         String seller = findSeller(currCmd, newCmd);
 
         Trade trade = new Trade(currAmount, currPriceLimit, buyer, seller, currCmd.getType());
-        transactionHistory.add(trade);
+        transactionHistory.add(0, trade);
         tradeDescription.addSubTrade(currAmount, currPriceLimit, seller, buyer);
     }
     /******************************************************************************/

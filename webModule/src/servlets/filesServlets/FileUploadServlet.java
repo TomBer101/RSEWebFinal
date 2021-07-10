@@ -27,36 +27,38 @@ public class FileUploadServlet  extends HttpServlet
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException
     {
         response.setContentType("text/html");
-        //PrintWriter out = response.getWriter();
 
-        Collection<Part> parts = request.getParts(); //"read" file. As for now: part == a file ( or any other input ?)
-        //StringBuilder fileContent = new StringBuilder(); // for "stringify" the context - not needed for us.
+        Collection<Part> parts = request.getParts(); // "read" file. As for now: part == a file (or any other input ?)
+
+        // StringBuilder fileContent = new StringBuilder(); // for "stringify" the context - not needed for us.
+
         Users users = ServletsUtils.getUsers(getServletContext());
         Stocks stocks = ServletsUtils.getStocks(getServletContext());
         String message;
 
         try {
             boolean allGood = true; // not sure if needed: we will load the file into the system <-> the file pass validation.
-            JAXBContext jaxbContext = JAXBContext.newInstance(RizpaStockExchangeDescriptor.class); //
+            JAXBContext jaxbContext = JAXBContext.newInstance(RizpaStockExchangeDescriptor.class);
             Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller(); // RSED Unmarshaller
 
             for(Part part : parts)
             {
                 // descriptor of each input file
-                RizpaStockExchangeDescriptor descriptor = (RizpaStockExchangeDescriptor) jaxbUnmarshaller.unmarshal(part.getInputStream());
+                RizpaStockExchangeDescriptor descriptor = (RizpaStockExchangeDescriptor)jaxbUnmarshaller.unmarshal(part.getInputStream());
                 checkXMLFile(descriptor); // throws an exception -> would be shown on response.getOutputStream
 
                 List<RseStock> myStocks = descriptor.getRseStocks().getRseStock(); // Stocks that user declares of
                 List<RseItem> holdings = descriptor.getRseHoldings().getRseItem(); // Stocks that he holds.
 
                 Set<String> stocksSymbols = myStocks.stream().map(RseStock::getRseSymbol).collect(Collectors.toSet());
+
                 for(RseItem item : holdings)
                 {
                     if (!stocksSymbols.contains(item.getSymbol()))
                     {
                         allGood = false; // Not sure if needed, because i am not sure if servlets ends response after error status.
-                        // Handel error
-                        message = "The chosen file is wrong. There is no " + item.getSymbol() + " stock in th file.";
+                        // TODO Handel error (?)
+                        message = "The chosen file is wrong. There is no " + item.getSymbol() + " stock in the file.";
                         response.setStatus(401);
                         response.getOutputStream().println(message);
                         break; // Just in case.
@@ -70,9 +72,13 @@ public class FileUploadServlet  extends HttpServlet
                     users.addStocks(SessionUtils.getUsername(request),descriptor.getRseHoldings().getRseItem(), stocks);
                 }
             }
-        } catch (JAXBException e) {
+        }
+        catch (JAXBException e)
+        {
             e.printStackTrace();
-        } catch (Exception e) {
+        }
+        catch (Exception e)
+        {
             response.setStatus(401);
             response.getOutputStream().println(e.getMessage());
             e.printStackTrace();

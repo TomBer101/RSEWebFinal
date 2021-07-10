@@ -116,7 +116,6 @@ $(function(){
             $('error-holder').append("Amount of stocks should be grater then zero");
         else
         {
-
             $.ajax({
                 data:$(this).serialize(),
                 url:this.action,
@@ -144,7 +143,7 @@ $(function() {
         var moneyAmount = document.getElementById("moneyAmount");
 
         if(moneyAmount.value.length === 0)
-            $('error-holder').append("Missing Information"); // TODO : more informative message?
+            $('#error-holder').append("Missing Information"); // TODO : more informative message?
         else
         {
             $.ajax({
@@ -163,8 +162,47 @@ $(function() {
             });
             return false;
         }
+        return false;
     });
 });
 /******************************************************************************/
+var refreshRate = 2000;
+/******************************************************************************/
+$(function()
+{
+    $('#uploadFileForm').submit(function()
+    {
+        var file2Load = this[0].files[0];
+        var type = file2Load.type; // type of the file
 
+        if (type !== 'text/xml')
+            $('#error-holder').append("File must be .xml !");
+        else
+        {
+            var formData = new FormData();
+            formData.append("myFile", file2Load);
+
+            $.ajax({
+                method: 'POST',
+                data: formData,
+                url: this.action,
+                processData: false,
+                contentType: false,
+                timeout: 4000,
+                error: function(e)
+                {
+                    console.error("Failed to get result from server");
+                    $("#error-holder").text("Failed to get result from server:\n" + e);
+                },
+                success: function(r)
+                {
+                    $('#error-holder').text(r);
+                }
+            });
+            return false;
+        }
+        return false;
+    });
+    return false;
+});
 /******************************************************************************/

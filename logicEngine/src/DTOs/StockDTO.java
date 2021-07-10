@@ -1,6 +1,9 @@
 package DTOs;
 
 import enginePackage.Stock;
+import enginePackage.Trade;
+
+import java.util.List;
 
 public class StockDTO
 {
@@ -9,6 +12,7 @@ public class StockDTO
     private String symbol;
     private int currValue;
     private int transactionsCycle;
+    private List<TradeDTO> transactionHistory;
     /******************************************************************************/
     public StockDTO(Stock stock)
     {
@@ -16,11 +20,16 @@ public class StockDTO
         this.symbol = stock.getSymbol();
         this.currValue = stock.getCurrValue();
         this.transactionsCycle = stock.getTransactionsCycle();
+
+        stock.getTransactionsHistory().forEach((t)-> {
+            this.transactionHistory.add(new TradeDTO(t));
+        });
     }
     /******************************************************************************/
     public String getCompanyName() { return companyName; }
     public String getSymbol() { return symbol; }
     public int getCurrValue() { return currValue; }
     public int getTransactionsCycle() { return transactionsCycle; }
+    public List<TradeDTO> getTransactionHistory() { return transactionHistory; }
     /******************************************************************************/
 }

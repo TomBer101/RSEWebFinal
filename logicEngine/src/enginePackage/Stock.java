@@ -1,6 +1,6 @@
 package enginePackage;
 
-import DTOs.TradeDTO;
+import DTOs.CommandDTO;
 import generated.RseStock;
 import java.util.ArrayList;
 import java.util.List;
@@ -65,9 +65,9 @@ public class Stock
     }
     /******************************************************************************/
     // This method submit new command to the engine
-    public TradeDTO addCommand(Command cmd)
+    public CommandDTO addCommand(Command cmd)
     {
-        TradeDTO tradeDescription = new TradeDTO(cmd.getAmountOfStocks());
+        CommandDTO tradeDescription = new CommandDTO(cmd.getAmountOfStocks());
 
         if (Command.Type.FOK == cmd.getType())
         {
@@ -92,5 +92,7 @@ public class Stock
 
         return tradeDescription;
     }
+    /******************************************************************************/
+
     /******************************************************************************/
 }

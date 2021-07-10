@@ -1,9 +1,6 @@
 package enginePackage;
 
-import DTOs.TradeDTO;
 import java.text.SimpleDateFormat;
-import java.util.Iterator;
-import java.util.List;
 
 public class Command
 {

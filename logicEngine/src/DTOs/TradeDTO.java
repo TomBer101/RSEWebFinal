@@ -1,54 +1,27 @@
 package DTOs;
 
-import java.util.ArrayList;
-import java.util.List;
+import enginePackage.Trade;
 
 public class TradeDTO
 {
     /******************************************************************************/
-    private List<SubTrade> subTrades;
-    private int inWaitingList;
-    private int offerStockAmount;
     private String date;
+    private int amount;
+    private int value;
     /******************************************************************************/
-    public class SubTrade
+    public TradeDTO(Trade trade)
     {
-        private int amount;
-        private int currPrice;
-        private int totalWorth;
-        private String buyer;
-        private String seller;
-
-        public SubTrade(int amount, int price, String seller, String buyer)
-        {
-            this.amount = amount;
-            this.currPrice = price;
-            this.seller = seller;
-            this.buyer = buyer;
-        }
-
-        public int getAmount() { return amount; }
-        public double getPrice() { return currPrice; }
-        public String getUserSoldName() { return seller; }
-        public String getUserBoughtName(){ return buyer; }
+        this.date = trade.getDate();
+        this.amount = trade.getStockAmount();
+        this.value = trade.getStockPrice();
     }
     /******************************************************************************/
-    public TradeDTO(int offerStockAmount)
-    {
-        subTrades = new ArrayList<>();
-        offerStockAmount = inWaitingList = offerStockAmount;
-    }
+    public String getDate() { return date; }
+    public int getAmount() { return amount; }
+    public int getValue() { return value; }
     /******************************************************************************/
-    public List<SubTrade> getAllSubTrades() { return subTrades; }
-    public int getOfferAmount() { return offerStockAmount; }
-    public int getInWaitingList() { return inWaitingList; }
+    public void setDate(String date) { this.date = date; }
+    public void setAmount(int amount) { this.amount = amount; }
+    public void setValue(int value) { this.value = value; }
     /******************************************************************************/
-    public void addSubTrade(int amount, int price, String seller, String buyer)
-    {
-        subTrades.add(new SubTrade(amount, price, seller, buyer));
-        inWaitingList -= amount;
-    }
-    /******************************************************************************/
-
-
 }

@@ -74,5 +74,14 @@
         <servlet-class>servlets.filesServlets.FileUploadServlet</servlet-class>
     </servlet>
 
+    <servlet-mapping>
+        <servlet-name>StockInfoUpdateAdminServlet</servlet-name>
+        <url-pattern>/adminStockPageUpdateData</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>StockInfoUpdateAdminServlet</servlet-name>
+        <servlet-class>servlets.StockInfoUpdateAdminServlet</servlet-class>
+    </servlet>
 
 </web-app>
