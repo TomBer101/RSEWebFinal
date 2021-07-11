@@ -20,7 +20,6 @@ function refreshUserData(userData)
     $("#currentCurrency").empty();
     $("#currentCurrency").append(userData.currency);
 
-
     var tableBodyElement = document.getElementById("userHistoryTb");
 
     if (tableBodyElement.length !== 1)
