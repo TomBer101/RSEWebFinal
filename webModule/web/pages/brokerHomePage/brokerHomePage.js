@@ -73,7 +73,7 @@ function refreshStocksList(stocks)
 
     $.each(stocks || [], function (index, stock)
     {
-       $("<li id=" + stock.symbol + ' onclick=showStock('+stock.symbol+")>" + "Symbol: " + stock.symbol + "<br>Company: " + stock.companyName + "<br> Value: "
+       $("<li  onclick=showStock("+stock.symbol+")>" + "Symbol: " + stock.symbol + "<br>Company: " + stock.companyName + "<br> Value: "
            + stock.currValue + "<br> Cycle: " + stock. transactionsCycle + "</li>").appendTo($('#stocksList'));
     });
 }
