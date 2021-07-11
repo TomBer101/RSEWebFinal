@@ -9,6 +9,7 @@ import enginePackage.Users;
 import utils.ServletsUtils;
 import utils.SessionUtils;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -26,7 +27,7 @@ public class MakeCommandServlet extends HttpServlet
         Command.Way way = Command.Way.valueOf(request.getParameter("way"));
         Command.Type type = Command.Type.valueOf(request.getParameter("type"));
 
-        int priceLimit = way.equals(Command.Type.MKT.toString()) ? (-1) : Integer.parseInt(request.getParameter("priceLimit"));
+        int priceLimit = type.toString().equals(Command.Type.MKT.toString()) ? (-1) : Integer.parseInt(request.getParameter("priceLimit"));
         int amount = Integer.parseInt(request.getParameter("stockAmount"));
 
         CommandDTO res = stocks.addCommand(SessionUtils.getChosenStock(request),user,type, way, amount, priceLimit);
@@ -38,5 +39,17 @@ public class MakeCommandServlet extends HttpServlet
             out.flush();
         }
     }
+    /******************************************************************************/
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException
+    {
+        processRequest(request, response);
+    }
+    /******************************************************************************/
 
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException
+    {
+        processRequest(request, response);
+    }
 }

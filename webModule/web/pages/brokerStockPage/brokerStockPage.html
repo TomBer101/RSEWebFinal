@@ -25,16 +25,16 @@
 
     <table id="transactionHistory">
         <thead>
-        <tr>
-            <th>Date</th>
-            <th>Amount</th>
-            <th>Value</th>
-        </tr>
+            <tr>
+                <th>Date</th>
+                <th>Amount</th>
+                <th>Value</th>
+            </tr>
         </thead>
-
         <tbody id="transactionHistoryTb"></tbody>
     </table>
 
+    <br>
     <button type="button" id="Make Command" onclick="document.getElementById('makeCommandHolder').style.display='block'">Make Command</button>
     <div id="makeCommandHolder" style="display:none">
         <form id="makeCommandForm" method="POST" action="makeCommand">
@@ -45,15 +45,18 @@
             <label class="lbl">Sell</label><br>
 
             <label class="lbl">Choose command type</label><br>
-            <input type="radio" id="lmt" name="type" value="LMT"/>
+            <input type="radio" id="lmt" name="type" value="LMT" onclick="enableLimit()"/>
             <label class="lbl">LMT</label>
-            <input type="radio" id="mkt" name="type" value="MKT" onclick="toggleLimit()"/>
+            <input type="radio" id="mkt" name="type" value="MKT" onclick="disableLimit()"/>
             <label class="lbl">MKT</label>
-            <input type="radio" id="fok" name="type" value="FOK"/>
+            <input type="radio" id="fok" name="type" value="FOK" onclick="enableLimit()"/>
             <label class="lbl">FOK</label>
-            <input type="radio" id="ioc" name="type" value="IOC"/>
-            <label class="lbl">IOC</label>
-            <input type="number" id="stockAmount" name="stockAmount"/>
+            <input type="radio" id="ioc" name="type" value="IOC" onclick="enableLimit()"/>
+            <label class="lbl">IOC</label><br>
+            <span>
+                Stock Amount:
+                <input type="number" id="stockAmount" name="stockAmount">
+            </span>
 
             <div id="limitField">Price Limit:
                 <input type="number" id="priceLimit" name="priceLimit"/>
@@ -62,9 +65,9 @@
             <button type="button" onclick= "document.getElementById('makeCommandHolder').style.display='none'">Cancel</button>
             <input type="submit" value="Commit"/>
         </form>
-        <div id="msg-holder"></div>
     </div>
 
+    <div id="msg-holder"></div>
     <div id="commandRes" style="display:none">
         <ul id="currTrades"></ul>
     </div> <!-- This text area would show current trades if were made any -->

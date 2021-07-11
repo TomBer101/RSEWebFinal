@@ -96,7 +96,7 @@
 
     <servlet-mapping>
         <servlet-name>MakeCommand</servlet-name>
-        <url-pattern>/makeCommand</url-pattern>
+        <url-pattern>/pages/brokerStockPage/makeCommand</url-pattern>
     </servlet-mapping>
 
     <servlet>

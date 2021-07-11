@@ -6,7 +6,7 @@ var STOCK_DATA_SERVLET_URL = buildUrlWithContextPath("stockData4Broker");
 function refreshBrokerData(stockData)
 {
     var myAmount = stockData.amount;
-    var currStockDTO = stockData.stockDto;
+    var currStockDTO = stockData.stockDTO;
 
     $("#mainTitle").empty();
     $("#mainTitle").append(currStockDTO.symbol + " Data:");
@@ -26,19 +26,19 @@ function refreshBrokerData(stockData)
     $("#amount").empty();
     $("#amount").append(myAmount);
 
-    if( myAmount == 0)
-        $("#sRadio").disabled = true;
+    if( myAmount === 0)
+        $("#sRadio").prop('disabled', true);
     else
-        $("#sRadio").disabled = false;
+        $("#sRadio").prop('disabled', false);
 
 
-    var tableBodyElement = $("#transactionHistoryTb");
+    var tableBodyElement = document.getElementById("transactionHistoryTb");
     if (tableBodyElement.length !== 1)
-        tableBodyElement.empty();
+        $("#transactionHistoryTb").empty();
 
     currStockDTO.transactionHistory.forEach(trade =>
         {
-            var newRow = tableBodyElement.insertRow(-1);
+            var newRow = tableBodyElement.insertRow(0);
 
             var dateCell = newRow.insertCell(0);
             var amountCell = newRow.insertCell(1);
@@ -81,21 +81,21 @@ function appendTrades(currTrades, way)
 
     currTrades.subCommandTrades.forEach( trade =>
         {
-            $('<li id=subTrade>' + trade.amount + "Stocks with " + trade[otherSide] +
+            $('<li class="subTrade">' + trade.amount + "Stocks with " + trade[otherSide] +
                 ". with value of: " + trade.currPrice + '</li>').appendTo($("#currTrades"));
         });
 }
 /******************************************************************************/
 function appendMessage(currTrades, way)
 {
-    var leftOvers = parseInt(msg.offerStockAmount) - parseInt(msg.inWaitingList);
+    var leftOvers = parseInt(currTrades.offerStockAmount) - parseInt(currTrades.inWaitingList);
 
     switch(leftOvers)
     {
-        case parseInt(msg.offerStockAmount):
+        case parseInt(0):
             $("#msg-holder").append("Sorry. No trade had been made.");
             break;
-        case(0):
+        case(parseInt(currTrades.offerStockAmount)):
             $("#msg-holder").append("YAY! All the command is finished!")
             appendTrades(currTrades, way);
             break;
@@ -108,27 +108,28 @@ function appendMessage(currTrades, way)
 /******************************************************************************/
 $(function(){
     var formHolder = document.getElementById("makeCommandHolder");
-    var currTradesList = document.getElementById("currTrades");
+    var currTradesList = document.getElementById("commandRes");
 
     $("#makeCommandForm").submit(function()
         {
+            var myAmount = parseInt(document.getElementById("amount").innerText);
             $("#msg-holder").empty();
-            currTradesList.style.display = "none";
-            currTradesList.empty();
+            $("#currTrades").empty();
+            //currTradesList.style.display = "none";
 
             var way = document.getElementsByName('way');
             var flag1 = false;
-            for(var i = 0; i < radios.length; i++){
+            for(var i = 0; i < way.length; i++){ // if way was selected
                 if(way[i].checked){
                     flag1 = true;
-                    way = way[i].value();
+                    way = way[i].value;
                     break;
                 }
             }
 
             var type = document.getElementsByName('type');
             var flag2 = false
-            for(var i = 0; i < radios.length; i++){
+            for(var i = 0; i < type.length; i++){
                 if(type[i].checked){
                     flag2 = true;
                     break;
@@ -136,35 +137,47 @@ $(function(){
             }
 
             if(!flag1 || !flag2)
-                $("#msg-holder").append("Missing information.")
+                $("#msg-holder").append("Missing information.");
 
-            else if(document.getElementById("stockAmount") <= 0)
-                $("#msg-holder").append("Amount of stock has to be greater then 0.")
-            else if(document.getElementById("priceLimit").disabled === true && parseInt(document.getElementById("priceLimit")) <= 0)
-                $("#msg-holder").append("Price limit has to be greater then 0.")
+            else if(document.getElementById("stockAmount").value.length == 0 || document.getElementById("stockAmount").value <= 0)
+                $("#msg-holder").append("Amount of stock has to be greater then 0.");
+            else if(document.getElementById("priceLimit").disabled === false && parseInt(document.getElementById("priceLimit").value) <= 0)
+                $("#msg-holder").append("Price limit has to be greater then 0.");
+            else if(way === "SELL" && document.getElementById("stockAmount").value > myAmount)
+                $("#msg-holder").append("You cannot sell more than you have...");
 
             else
             {
                 $.ajax({
                     data:$(this).serialize(),
                     url:this.action,
+                    method: "POST",
                     timeout: 2000,
                     success:function(currTrades)
                     {
+                        console.log("in sucsses");
                         appendMessage(currTrades, way); // I send the way to print the opposite User.
-                        $("makeCommandForm")[0].reset();
+                        $("#makeCommandForm")[0].reset();
                         formHolder.style.display = "none";
                         currTradesList.style.display = "block";
+                    },
+                    error:function(t)
+                    {
+                        console.log("bad");
                     }
                 });
+                return false;
             }
-        }
-    )
+        });
 });
 /******************************************************************************/
-function toggleLimit()
+function disableLimit()
 {
-    document.getElementById("priceLimit").disabled =  !(document.getElementById("priceLimit").disabled);
+    document.getElementById("priceLimit").disabled =  true;
 }
 /******************************************************************************/
-
+function enableLimit()
+{
+    document.getElementById("priceLimit").disabled =  false;
+}
+/******************************************************************************/

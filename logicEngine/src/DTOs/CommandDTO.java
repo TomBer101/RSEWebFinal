@@ -1,5 +1,6 @@
 package DTOs;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,6 +26,7 @@ public class CommandDTO
             this.currPrice = price;
             this.seller = seller;
             this.buyer = buyer;
+            this.totalWorth = amount * price;
         }
 
         public int getAmount() { return amount; }
@@ -33,10 +35,12 @@ public class CommandDTO
         public String getUserBoughtName(){ return buyer; }
     }
     /******************************************************************************/
-    public CommandDTO(int offerStockAmount)
+    public CommandDTO(int StockAmount)
     {
         subCommandTrades = new ArrayList<>();
-        offerStockAmount = inWaitingList = offerStockAmount;
+        offerStockAmount = StockAmount;
+        inWaitingList = StockAmount;
+        this.date = new SimpleDateFormat("yyyy-MM-dd HH.mm.ss.SSS").format(new java.util.Date());
     }
     /******************************************************************************/
     public List<SubCommandTrade> getAllSubTrades() { return subCommandTrades; }

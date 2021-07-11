@@ -47,7 +47,7 @@ public class StockInfoUpdateBrokerServlet extends HttpServlet
 
     }
     /******************************************************************************/
-    private static class StockData4Broker
+    private  class StockData4Broker
     {
         final private StockDTO stockDTO;
         final private int amount;
