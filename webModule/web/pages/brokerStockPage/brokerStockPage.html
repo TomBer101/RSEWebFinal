@@ -7,13 +7,6 @@
     <script src="brokerStockPage.js"></script>
 </head>
 
-<!--
-TODO List:
-- on load: update the main title
--         + update the labels of the list
-- update the page data
--->
-
 <body>
     <h1 id="mainTitle"></h1>
 
@@ -41,18 +34,19 @@ TODO List:
         <tbody id="transactionHistoryTb"></tbody>
     </table>
 
+    <button type="button" id="Make Command" onclick="document.getElementById('makeCommandHolder').style.display='block'">Make Command</button>
     <div id="makeCommandHolder" style="display:none">
-        <form id="makeCommandForm" method="POSt" action="makeCommand">
+        <form id="makeCommandForm" method="POST" action="makeCommand">
             <label class="lbl">Would you like to buy or sell?</label><br>
-            <input type="radio" id="bRadio" name="type" value="BUY"/>
+            <input type="radio" id="bRadio" name="way" value="BUY"/>
             <label class="lbl">Buy</label>
-            <input type="radio" id="sRadio" name="type" value="SELL"/>
+            <input type="radio" id="sRadio" name="way" value="SELL"/>
             <label class="lbl">Sell</label><br>
 
             <label class="lbl">Choose command type</label><br>
             <input type="radio" id="lmt" name="type" value="LMT"/>
             <label class="lbl">LMT</label>
-            <input type="radio" id="mkt" name="type" value="MKT"/>
+            <input type="radio" id="mkt" name="type" value="MKT" onclick="toggleLimit()"/>
             <label class="lbl">MKT</label>
             <input type="radio" id="fok" name="type" value="FOK"/>
             <label class="lbl">FOK</label>
@@ -60,12 +54,19 @@ TODO List:
             <label class="lbl">IOC</label>
 
             <span id="limitField">Price Limit:
-        <input type="number" id="priceLimit" name="priceLimit"/>
-      </span>
+                <input type="number" id="priceLimit" name="priceLimit"/>
+            </span>
             <input type="number" id="stockAmount" name="stockAmount"/>
+            <button type="button" onclick= "document.getElementById('makeCommandHolder').style.display='none'">Cancel</button>
             <input type="submit" value="Commit"/>
         </form>
+        <div id="msg-holder"></div>
     </div>
+
+    <div id="commandRes" style="display:none">
+        <ul id="currTrades"></ul>
+    </div> <!-- This text area would show current trades if were made any -->
+
 
 </body>
 </html>

@@ -68,4 +68,9 @@ public class Users
        return users.get(userName).getStockAmount(chosenStock);
     }
     /******************************************************************************/
+    public User getUser(String userName)
+    {
+        return users.get(userName);
+    }
+    /******************************************************************************/
 }

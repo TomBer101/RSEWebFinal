@@ -54,4 +54,4 @@ $(function()
     setInterval(ajaxAdminData, refreshRate);
 });
 /******************************************************************************/
-
+// TODO : we need to add the commands from the waiting list.

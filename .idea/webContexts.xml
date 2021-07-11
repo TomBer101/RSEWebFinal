@@ -5,6 +5,7 @@
       <map>
         <entry key="file://$PROJECT_DIR$/webModule/web/index.html" value="file://$PROJECT_DIR$/webModule/web" />
         <entry key="file://$PROJECT_DIR$/webModule/web/pages/brokerHomePage/brokerHomePage.html" value="file://$PROJECT_DIR$/webModule/web/pages/brokerHomePage" />
+        <entry key="file://$PROJECT_DIR$/webModule/web/pages/brokerStockPage/brokerStockPage.html" value="file://$PROJECT_DIR$/webModule/web/pages/brokerStockPage" />
       </map>
     </option>
   </component>

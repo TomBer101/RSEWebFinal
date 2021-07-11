@@ -2,6 +2,7 @@ package enginePackage;
 
 import java.util.*;
 
+import DTOs.CommandDTO;
 import DTOs.StockDTO;
 import generated.*;
 
@@ -58,6 +59,13 @@ public class Stocks
     public StockDTO stockToDTO(String symbol)
     {
         return new StockDTO(stocks.get(symbol));
+    }
+    /******************************************************************************/
+    public CommandDTO addCommand(String stockName, User initiator, Command.Type type, Command.Way way, int amountOfStocks, int priceLimit)
+
+    {
+        Command cmd = new Command(stocks.get(stockName), initiator, type, way, amountOfStocks, priceLimit);
+        return stocks.get(stockName).addCommand(cmd);
     }
     /******************************************************************************/
 }

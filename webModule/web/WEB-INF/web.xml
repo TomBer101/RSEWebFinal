@@ -94,4 +94,14 @@
         <servlet-class>servlets.StockInfoUpdateBrokerServlet</servlet-class>
     </servlet>
 
+    <servlet-mapping>
+        <servlet-name>MakeCommand</servlet-name>
+        <url-pattern>/makeCommand</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>MakeCommand</servlet-name>
+        <servlet-class>servlets.MakeCommandServlet</servlet-class>
+    </servlet>
+
 </web-app>

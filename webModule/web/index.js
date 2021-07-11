@@ -9,7 +9,7 @@ $(function ()   // on load
 
         if (textFieldValue.value.length === 0 || (!brokerRadioValue.checked && !adminRadioValue.checked))
         {
-            $('#error-placeholder').append("Missing information");
+            $('#error-placeholder').empty().append("Missing information");
         }
         else
         {
