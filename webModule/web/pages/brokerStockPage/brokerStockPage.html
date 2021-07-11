@@ -4,6 +4,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Ritzpa Stock Exchange</title>
     <script src="../../jquery-2.0.3.min.js"></script>
+    <script src="../../utilsUI/contextPathHelper.js"></script>
     <script src="brokerStockPage.js"></script>
 </head>
 
@@ -52,11 +53,12 @@
             <label class="lbl">FOK</label>
             <input type="radio" id="ioc" name="type" value="IOC"/>
             <label class="lbl">IOC</label>
-
-            <span id="limitField">Price Limit:
-                <input type="number" id="priceLimit" name="priceLimit"/>
-            </span>
             <input type="number" id="stockAmount" name="stockAmount"/>
+
+            <div id="limitField">Price Limit:
+                <input type="number" id="priceLimit" name="priceLimit"/>
+            </div>
+
             <button type="button" onclick= "document.getElementById('makeCommandHolder').style.display='none'">Cancel</button>
             <input type="submit" value="Commit"/>
         </form>

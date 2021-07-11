@@ -13,7 +13,7 @@ public class StockInfoServlet extends HttpServlet
 {
     /******************************************************************************/
     private final String RSE_ADMIN_STOCK_PAGE_URL = "../adminStockPage/adminStockPage.html";
-    private final String RSE_BROKER_STOCK_PAGE_URL = "../brokerHomePage/brokerStockPage.html";
+    private final String RSE_BROKER_STOCK_PAGE_URL = "../brokerStockPage/brokerStockPage.html";
     /******************************************************************************/
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("text/html;charset=UTF-8");

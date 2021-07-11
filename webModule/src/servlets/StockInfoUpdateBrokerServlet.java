@@ -21,7 +21,7 @@ public class StockInfoUpdateBrokerServlet extends HttpServlet
     /******************************************************************************/
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("application/json");
-        Users users = ServletsUtils.getUsers(getServletContext());
+        Users users = ServletsUtils.getUsers(getServletContext()); // get the current user - need to know if and how many shares he holds.
         Stocks stocks = ServletsUtils.getStocks(getServletContext());
         StockDTO stockDTO;
 
@@ -44,9 +44,10 @@ public class StockInfoUpdateBrokerServlet extends HttpServlet
             out.flush();
         }
 
+
     }
     /******************************************************************************/
-    private class StockData4Broker
+    private static class StockData4Broker
     {
         final private StockDTO stockDTO;
         final private int amount;

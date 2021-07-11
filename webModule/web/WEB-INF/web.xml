@@ -86,7 +86,7 @@
 
     <servlet-mapping>
         <servlet-name>StockInfo4Broker</servlet-name>
-        <url-pattern>/StockData4Broker</url-pattern>
+        <url-pattern>/stockData4Broker</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -112,6 +112,16 @@
 
     <servlet>
         <servlet-name>stockInfoServlet</servlet-name>
+        <servlet-class>servlets.StockInfoServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>stockInfoServlet2</servlet-name>
+        <url-pattern>/pages/brokerHomePage/StockInfoServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>stockInfoServlet2</servlet-name>
         <servlet-class>servlets.StockInfoServlet</servlet-class>
     </servlet>
 

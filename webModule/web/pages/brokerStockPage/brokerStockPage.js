@@ -5,25 +5,28 @@ var STOCK_DATA_SERVLET_URL = buildUrlWithContextPath("stockData4Broker");
 /******************************************************************************/
 function refreshBrokerData(stockData)
 {
-    $("#mainTitle").empty().append(stockData.symbol + " Data:");
-    //$("#mainTitle");
+    var myAmount = stockData.amount;
+    var currStockDTO = stockData.stockDto;
 
-    $("#symbol").empty().append("Symbol: " + stockData.symbol);
-    //$("#symbol") ;
+    $("#mainTitle").empty();
+    $("#mainTitle").append(currStockDTO.symbol + " Data:");
 
-    $("#companyName").empty().append( "Company Name: " + stockData.companyName);
-    //$("#companyName").;
+    $("#symbol").empty();
+    $("#symbol").append("Symbol: " + currStockDTO.symbol);
 
-    $("#value").empty().append("Value: " + stockData.currValue);
-    //$("#value");
+    $("#companyName").empty();
+    $("#companyName").append( "Company Name: " + currStockDTO.companyName);
 
-    $("#cycle").empty().append("Cycle: " + stockData.transactionsCycle);
-    //$("#cycle");
+    $("#value").empty();
+    $("#value").append("Value: " + currStockDTO.currValue);
 
-    $("#amount").empty().append(stockData.amount);
-    //$("#amount");
+    $("#cycle").empty();
+    $("#cycle").append("Cycle: " + currStockDTO.transactionsCycle);
 
-    if( stockData.amount == 0)
+    $("#amount").empty();
+    $("#amount").append(myAmount);
+
+    if( myAmount == 0)
         $("#sRadio").disabled = true;
     else
         $("#sRadio").disabled = false;
@@ -33,7 +36,7 @@ function refreshBrokerData(stockData)
     if (tableBodyElement.length !== 1)
         tableBodyElement.empty();
 
-    stockData.stockDto.transactionHistory.forEach(trade =>
+    currStockDTO.transactionHistory.forEach(trade =>
         {
             var newRow = tableBodyElement.insertRow(-1);
 
@@ -57,7 +60,12 @@ function ajaxRefreshBrokerData(){
         {
             console.log("In Success Stock DATA");
             refreshBrokerData(data);
+        },
+        error:function(e)
+        {
+            console.log("didnt refresh stock data.")
         }
+
     })
 }
 /******************************************************************************/
