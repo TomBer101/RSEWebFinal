@@ -20,9 +20,30 @@ function refreshStocksList(stocks)
 
     $.each(stocks || [], function (index, stock)
     {
-        $('<li id=' + stock.symbol + ">" + "Symbol: " + stock.symbol + "<br>" + "Company: " + stock.companyName + "<br> Value: "
+        $('<li id=' + stock.symbol + "  onclick='showStock(" + stock.symbol +")'>" + "Symbol: " + stock.symbol + "<br>" + "Company: " + stock.companyName + "<br> Value: "
             + stock.currValue + "<br> Cycle: " + stock. transactionsCycle + "</li>").appendTo($('#stocksList'));
     });
+}
+/******************************************************************************/
+function showStock(symbol)
+{
+    $.ajax({
+        data: "symbol=" + symbol.getAttribute('id'),
+        url:"http://localhost:8080/webModule_Web_exploded/pages/adminHomePage/StockInfoServlet",
+        method: "GET",
+        timeout: 2000,
+        error: function(errorMassage)
+        {
+            console.log(errorMassage);
+        },
+        success: function (nextPageUrl)
+        {
+            window.location.replace(nextPageUrl);
+        }
+    });
+
+    // By default - we will always return false
+    return false;
 }
 /******************************************************************************/
 function ajaxUsersList()

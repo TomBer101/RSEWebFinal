@@ -3,6 +3,7 @@ package DTOs;
 import enginePackage.Stock;
 import enginePackage.Trade;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class StockDTO
@@ -20,6 +21,8 @@ public class StockDTO
         this.symbol = stock.getSymbol();
         this.currValue = stock.getCurrValue();
         this.transactionsCycle = stock.getTransactionsCycle();
+
+        this.transactionHistory = new ArrayList<>();
 
         stock.getTransactionsHistory().forEach((t)-> {
             this.transactionHistory.add(new TradeDTO(t));

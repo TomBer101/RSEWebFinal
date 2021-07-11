@@ -4,15 +4,9 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <title>Ritzpa Stock Exchange</title>
   <script src="../../jquery-2.0.3.min.js"></script>
+  <script src="../../utilsUI/contextPathHelper.js"></script>
   <script src="adminStockPage.js"></script>
 </head>
-
-<!--
-TODO List:
-- on load: update the main title
--         + update the labels of the list
-- update the page data
--->
 
 <body>
   <h1 id="mainTitle"></h1>
@@ -36,8 +30,9 @@ TODO List:
     <tbody id="transactionHistoryTb"></tbody>
   </table>
 
-  <a id="backBTN" href="../brokerHomePage/brokerHomePage.html"> Back </a>
-
+  <form>
+    <input type="button" value="Go back!" onclick="window.location.replace('/webModule_Web_exploded/pages/adminHomePage/adminHomePage.html');">
+  </form>
 
 </body>
 </html>

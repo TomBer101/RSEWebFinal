@@ -5,19 +5,19 @@ var ADMIN_UPDATE_DATA_SERVLET_URL = buildUrlWithContextPath("adminStockPageUpdat
 function refreshStockData(stockData)
 {
     $("#mainTitle").empty();
-    $("#mainTitle").innerHTML = stockData.symbol + " Data:";
+    $("#mainTitle").append(stockData.symbol + " Data:")
 
     $("#symbol").empty();
-    $("#symbol").innerHTML = "Symbol: " + stockData.symbol;
+    $("#symbol").append("Symbol: " + stockData.symbol);
 
     $("#companyName").empty();
-    $("#companyName").innerHTML = "Company Name: " + stockData.companyName;
+    $("#companyName").append("Company Name: " + stockData.companyName);
 
     $("#value").empty();
-    $("#value").innerHTML = "Value: " + stockData.currValue;
+    $("#value").append("Value: " + stockData.currValue);
 
     $("#cycle").empty();
-    $("#cycle").innerHTML = "Cycle: " + stockData.transactionsCycle;
+    $("#cycle").append("Cycle: " + stockData.transactionsCycle);
 
     var tableBodyElement = document.getElementById("transactionHistoryTb");
 

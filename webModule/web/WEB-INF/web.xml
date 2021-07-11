@@ -104,4 +104,16 @@
         <servlet-class>servlets.MakeCommandServlet</servlet-class>
     </servlet>
 
+
+    <servlet-mapping>
+        <servlet-name>stockInfoServlet</servlet-name>
+        <url-pattern>/pages/adminHomePage/StockInfoServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>stockInfoServlet</servlet-name>
+        <servlet-class>servlets.StockInfoServlet</servlet-class>
+    </servlet>
+
+
 </web-app>

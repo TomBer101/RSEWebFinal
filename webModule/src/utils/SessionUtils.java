@@ -17,7 +17,7 @@ public class SessionUtils
     public static String getChosenStock(HttpServletRequest request)
     {
         HttpSession session = request.getSession(false);
-        Object sessionAtribute = session != null ? session.getAttribute("chosenStock") : null;
+        Object sessionAtribute = session != null ? session.getAttribute("symbol") : null;
         return sessionAtribute != null ? sessionAtribute.toString() : null;
     }
     /******************************************************************************/

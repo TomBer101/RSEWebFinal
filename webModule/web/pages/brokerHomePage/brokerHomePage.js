@@ -49,7 +49,7 @@ function refreshUserData(userData)
 function showStock(symbol)
 {
     $.ajax({
-        data: "symbol=" + symbol,
+        data: "symbol=" + symbol.getAttribute('id'),
         url:"StockInfoServlet",
         method: "GET",
         timeout: 2000,
@@ -73,8 +73,8 @@ function refreshStocksList(stocks)
 
     $.each(stocks || [], function (index, stock)
     {
-       $("<li  onclick=showStock("+stock.symbol+")>" + "Symbol: " + stock.symbol + "<br>Company: " + stock.companyName + "<br> Value: "
-           + stock.currValue + "<br> Cycle: " + stock. transactionsCycle + "</li>").appendTo($('#stocksList'));
+        $('<li id=' + stock.symbol + "  onclick='showStock(" + stock.symbol +")'>" + "Symbol: " + stock.symbol + "<br>" + "Company: " + stock.companyName + "<br> Value: "
+            + stock.currValue + "<br> Cycle: " + stock. transactionsCycle + "</li>").appendTo($('#stocksList'));
     });
 }
 /******************************************************************************/

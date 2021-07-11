@@ -12,8 +12,8 @@ import java.io.IOException;
 public class StockInfoServlet extends HttpServlet
 {
     /******************************************************************************/
-    private final String RSE_ADMIN_STOCK_PAGE_URL = "pages/adminStockPage/adminStockPage.html";
-    private final String RSE_BROKER_STOCK_PAGE_URL = "pages/brokerHomePage/brokerStockPage.html";
+    private final String RSE_ADMIN_STOCK_PAGE_URL = "../adminStockPage/adminStockPage.html";
+    private final String RSE_BROKER_STOCK_PAGE_URL = "../brokerHomePage/brokerStockPage.html";
     /******************************************************************************/
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -24,7 +24,6 @@ public class StockInfoServlet extends HttpServlet
             response.setStatus(401);
             response.getOutputStream().println("For some reason we got there...");
         }
-
         else
         {
             session.setAttribute("symbol", request.getParameter("symbol"));
