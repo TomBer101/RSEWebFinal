@@ -27,6 +27,7 @@ $(function ()   // on load
                     window.location.replace(nextPageUrl);
                 }
             });
+            return false;
         }
         return false;
     });

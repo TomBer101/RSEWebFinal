@@ -6,7 +6,31 @@ body
     background: #51b2cd;
 }
 
-.login
+.split
+{
+    height: 100%;
+    width: 50%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    overflow-x: hidden;
+    padding-top: 20px;
+}
+
+.left
+{
+    left: 0;
+    background-color: #51b2cd;
+}
+
+.right
+{
+    right: 0;
+    background-color: #51b2cd;
+}
+
+
+#onlineUsersContainer
 {
     position: relative;
     margin: 15% auto;
@@ -19,7 +43,7 @@ body
     box-shadow: 0 0 200px rgba(255, 255, 255, 0.5), 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
-.login:before
+#onlineUsersContainer:before
 {
     content: '';
     position: absolute;
@@ -32,7 +56,8 @@ body
     border-radius: 4px;
 }
 
-.login h1 {
+.opTitle
+{
     margin: -20px -20px 21px;
     line-height: 40px;
     font-size: 21px;
@@ -51,20 +76,17 @@ body
     box-shadow: 0 1px whitesmoke;
 }
 
-.login p
+.container-fluid
 {
-    text-align: center;
-    margin: 20px 0 0;
-}
-
-.login p:first-child
-{
-    margin-top: 0;
-}
-
-.login input[type=text], .login input[type=password]
-{
-    width: 585px;
+    position: relative;
+    margin: 15% auto;
+    padding: 20px 20px 20px;
+    width: 600px;
+    height: 200px;
+    background: white;
+    border-radius: 3px;
+    -webkit-box-shadow: 0 0 200px rgba(255, 255, 255, 0.5), 0 1px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 200px rgba(255, 255, 255, 0.5), 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 input
@@ -73,11 +95,42 @@ input
     font-size: 14px;
 }
 
-input[type=text]:focus, input[type=password]:focus
+input[type=text]:focus
 {
     border-color: #7dc9e2;
     outline-color: #dceefc;
     outline-offset: 0;
+}
+
+#chatTitle
+{
+    margin: -20px -20px 21px;
+    line-height: 40px;
+    font-size: 21px;
+    font-weight: bold;
+    color: #555;
+    text-align: center;
+    text-shadow: 0 1px white;
+    background: #f3f3f3;
+    border-bottom: 1px solid #cfcfcf;
+    border-radius: 3px 3px 0 0;
+    background-image: -webkit-linear-gradient(top, white, #eef2f5);
+    background-image: -moz-linear-gradient(top, white, #eef2f5);
+    background-image: -o-linear-gradient(top, white ,#eef2f5);
+    background-image: linear-gradient(to bottom, white, #eef2f5);
+    -webkit-box-shadow: 0 1px whitesmoke;
+    box-shadow: 0 1px whitesmoke;
+}
+
+.container-fluid p
+{
+    text-align: center;
+    margin: 20px 0 0;
+}
+
+#chatform
+{
+    margin-bottom: 0;
 }
 
 input[type=submit]:active
@@ -88,22 +141,19 @@ input[type=submit]:active
     box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.2);
 }
 
-.lt-ie9 input[type=text], .lt-ie9 input[type=password]
-{
-    line-height: 34px;
-}
+
 input[type=submit] {
     padding: 0 18px;
     height: 29px;
-    width: 100px;
-    font-size: 15px;
+    width: 40px;
+    font-size: 14px;
     font-weight: bold;
     color: #527881;
     text-shadow: 0 1px #e3f1f1;
     background: #cde5ef;
     border: 1px solid;
     border-color: #b4ccce #b3c0c8 #9eb9c2;
-    border-radius: 16px;
+    border-radius: 10px;
     outline: 0;
     -webkit-box-sizing: content-box;
     -moz-box-sizing: content-box;
@@ -114,15 +164,12 @@ input[type=submit] {
     background-image: linear-gradient(to bottom, #edf5f8, #cde5ef);
     -webkit-box-shadow: inset 0 1px white, 0 1px 2px rgba(0, 0, 0, 0.15);
     box-shadow: inset 0 1px white, 0 1px 2px rgba(0, 0, 0, 0.15);
+    margin-left: 0px;
 }
-
-label
+#userstring
 {
-    font-size: 15px;
-    color: #777;
-    cursor: pointer;
-}
-
-#submit {
-    text-align: right;
+    height: 22px;
+    width: 500px;
+    border-radius: 8px;
+    border-color: #b3c0c8;
 }

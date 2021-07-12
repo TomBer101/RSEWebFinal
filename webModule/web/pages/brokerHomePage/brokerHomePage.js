@@ -113,6 +113,10 @@ function ajaxStocksList()
 /******************************************************************************/
 $(function()
 {
+    ajaxUsersList();
+    ajaxStocksList();
+    ajaxUserData();
+
     setInterval(ajaxUsersList, refreshRate);
     setInterval(ajaxStocksList, refreshRate);
     setInterval(ajaxUserData, refreshRate);
@@ -122,7 +126,6 @@ $(function(){
     var d = document.getElementById("issueStockHolder");
     $("#issueStockForm").submit(function()
     {
-       // $("#error-holder").clear();
         var symbol = document.getElementById("symbol");
         var companyName = document.getElementById("companyName");
         var stockAmount = document.getElementById("stocksAmount");
@@ -136,7 +139,6 @@ $(function(){
             $('error-holder').append("Amount of stocks should be grater then zero");
         else
         {
-
             $.ajax({
                 data:$(this).serialize(),
                 url:this.action,
@@ -157,10 +159,10 @@ $(function(){
     });
 });
 /******************************************************************************/
-$(function() {
+$(function()
+{
     $("#chargeMoney").submit(function()
     {
-      //  $('#error-holder').clear();
         var moneyAmount = document.getElementById("moneyAmount");
 
         if(moneyAmount.value.length === 0)
@@ -193,11 +195,11 @@ $(function()
 {
     $('#uploadFileForm').submit(function()
     {
+        $('#error-holder').empty();
         var file2Load = this[0].files[0];
-        var type = file2Load.type; // type of the file
 
-        if (type !== 'text/xml')
-            $('#error-holder').append("File must be .xml !");
+        if (file2Load === undefined)
+            $('#error-holder').append("No files was selected.");
         else
         {
             var formData = new FormData();

@@ -38,7 +38,7 @@ function refreshBrokerData(stockData)
 
     currStockDTO.transactionHistory.forEach(trade =>
         {
-            var newRow = tableBodyElement.insertRow(0);
+            var newRow = tableBodyElement.insertRow(-1);
 
             var dateCell = newRow.insertCell(0);
             var amountCell = newRow.insertCell(1);
@@ -71,6 +71,7 @@ function ajaxRefreshBrokerData(){
 /******************************************************************************/
 $(function ()
 {
+    ajaxRefreshBrokerData();
     setInterval(ajaxRefreshBrokerData, refreshRate);
 });
 /******************************************************************************/
@@ -181,3 +182,4 @@ function enableLimit()
     document.getElementById("priceLimit").disabled =  false;
 }
 /******************************************************************************/
+

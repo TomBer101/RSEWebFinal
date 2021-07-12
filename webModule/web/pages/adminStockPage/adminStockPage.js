@@ -36,6 +36,25 @@ function refreshStockData(stockData)
         amountCell.innerHTML = trade.amount;
         valueCell.innerHTML = trade.value;
     })
+
+    $("#buyCommands").empty();
+
+    $.each(stockData.buyOffers || [], function (index, offer)
+    {
+        $('<li>' + "Data: " + offer.date+ "<br>" + "Way: " + offer.way + "<br> Value: "
+            + offer.offerValue + "<br> Amount: " + offer.amount + "<br> Initiator: " + offer.initiatorUserName
+        + "<br> type: " + offer.type + "<br></li>").appendTo($('#buyCommands'));
+    });
+
+    $("#sellCommands").empty();
+
+    $.each(stockData.sellOffers || [], function (index, offer)
+    {
+        $('<li>' + "Data: " + offer.date+ "<br>" + "Way: " + offer.way + "<br> Value: "
+            + offer.offerValue + "<br> Amount: " + offer.amount + "<br> Initiator: " + offer.initiatorUserName
+            + "<br> type: " + offer.type + "<br></li>").appendTo($('#sellCommands'));
+    });
+
 }
 /******************************************************************************/
 function ajaxAdminData()
@@ -51,6 +70,7 @@ function ajaxAdminData()
 /******************************************************************************/
 $(function()
 {
+    ajaxAdminData();
     setInterval(ajaxAdminData, refreshRate);
 });
 /******************************************************************************/

@@ -14,6 +14,8 @@ public class StockDTO
     private int currValue;
     private int transactionsCycle;
     private List<TradeDTO> transactionHistory;
+    private List<OfferDTO> buyOffers;
+    private List<OfferDTO> sellOffers;
     /******************************************************************************/
     public StockDTO(Stock stock)
     {
@@ -27,6 +29,9 @@ public class StockDTO
         stock.getTransactionsHistory().forEach((t)-> {
             this.transactionHistory.add(new TradeDTO(t));
         });
+
+        this.buyOffers = stock.buyCommandsToDTO();
+        this.buyOffers = stock.sellCommandsToDTO();
     }
     /******************************************************************************/
     public String getCompanyName() { return companyName; }

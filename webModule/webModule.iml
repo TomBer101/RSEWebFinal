@@ -22,10 +22,10 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" scope="PROVIDED" name="Tomcat 8.5.23" level="application_server_libraries" />
     <orderEntry type="module" module-name="logicEngine" exported="" />
-    <orderEntry type="module-library" exported="">
+    <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/Downloads/gson-2.1.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../gson-2.1.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

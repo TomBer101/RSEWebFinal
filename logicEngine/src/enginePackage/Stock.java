@@ -1,6 +1,7 @@
 package enginePackage;
 
 import DTOs.CommandDTO;
+import DTOs.OfferDTO;
 import generated.RseStock;
 import java.util.ArrayList;
 import java.util.List;
@@ -93,6 +94,28 @@ public class Stock
         return tradeDescription;
     }
     /******************************************************************************/
+    public List<OfferDTO> buyCommandsToDTO()
+    {
+        List<OfferDTO> ans = new ArrayList<>();
+        Commands buyCmds = this.buyCommands;
 
+        buyCmds.getCommandsMap().values().forEach( (l) -> {
+            l.forEach((c)-> { ans.add(new OfferDTO(c)); });
+        });
+
+        return ans;
+    }
+    /******************************************************************************/
+    public List<OfferDTO> sellCommandsToDTO()
+    {
+        List<OfferDTO> ans = new ArrayList<>();
+        Commands buyCmds = this.sellCommands;
+
+        buyCmds.getCommandsMap().values().forEach( (l) -> {
+            l.forEach((c)-> { ans.add(new OfferDTO(c)); });
+        });
+
+        return ans;
+    }
     /******************************************************************************/
 }
