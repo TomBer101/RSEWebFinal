@@ -5,6 +5,8 @@
     <title>Ritzpa Stock Exchange</title>
     <script src="../../jquery-2.0.3.min.js"></script>
     <script src="../../utilsUI/contextPathHelper.js"></script>
+    <script src="../../utilsUI/graphBuilder.js"></script>
+    <script src="canvasjs.min.js"></script>
     <script src="brokerStockPage.js"></script>
 </head>
 
@@ -33,6 +35,7 @@
         </thead>
         <tbody id="transactionHistoryTb"></tbody>
     </table>
+
 
     <br>
     <button type="button" id="Make Command" onclick="document.getElementById('makeCommandHolder').style.display='block'">Make Command</button>
@@ -70,10 +73,11 @@
     <div id="msg-holder"></div>
     <div id="commandRes" style="display:none">
         <ul id="currTrades"></ul>
-    </div> <!-- This text area would show current trades if were made any -->
-
+    </div>
 
     <input type="button" value="Go back!" onclick="window.location.replace('/webModule_Web_exploded/pages/brokerHomePage/brokerHomePage.html');">
+
+    <div id="stockChartHolder"></div>
 
 </body>
 </html>

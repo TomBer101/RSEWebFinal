@@ -1,0 +1,67 @@
+.header { grid-area: header; }
+.chatContainer { grid-area: chatContainer; }
+.currency { grid-area: currency; }
+.right { grid-area: right; }
+.onlineUsers{grid-area: users;}
+.history{grid-area: history;}
+.forms{grid-area: forms}
+
+.grid-container {
+    display: grid;
+    grid-template-areas:
+    'header header header   '
+    'users  currency  right '
+    'users   history right '
+    'chatContainer   forms   right '
+    'chatContainer  forms    right ';
+    grid-gap: 10px;
+    padding: 10px 10px 10px 15px;
+    margin-left: 10px;
+    grid-template-columns: 1.5fr 3fr 1fr;
+    grid-template-rows: 40px 120px 420px
+}
+
+.forms
+{
+    padding-top: 50px;
+}
+
+body
+{
+    font: 13px/20px "Lucida Grande", Tahoma, Verdana, sans-serif;
+    color: #404040;
+    background: #51b2cd;
+}
+
+html, body
+{
+    margin: 0;
+    height: 100%;
+}
+
+html, .grid-container
+{
+    margin: 0;
+    height: 100%;
+}
+
+.grid-container div
+{
+    align-content: center;
+}
+
+#headerTitle
+{
+    color: #555;
+    text-align: center;
+    text-shadow: 0 1px white;
+    font-size: 16px;
+}
+
+#onlineUsersContainer
+{
+    background: white;
+    border-radius: 3px;
+    -webkit-box-shadow: 0 0 200px rgba(255, 255, 255, 0.5), 0 1px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 200px rgba(255, 255, 255, 0.5), 0 1px 2px rgba(0, 0, 0, 0.3);
+}
