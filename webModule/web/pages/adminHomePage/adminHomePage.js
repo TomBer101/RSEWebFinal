@@ -10,7 +10,7 @@ function refreshUsersList(users)
 
     $.each(users || [], function(index, user)
     {
-        $('<li class="userOnline">' + user + '</li>')
+        $('<li class="userOnline"> <span class="userNameBold">' + user.key + '</span><span class="userRole">' + user.value + '</span></li>')
             .appendTo($('#usersList'));
     });
 }
@@ -21,7 +21,7 @@ function refreshStocksList(stocks)
 
     $.each(stocks || [], function (index, stock)
     {
-        $('<li id=' + stock.symbol + "  onclick='showStock(" + stock.symbol +")'>" + "Symbol: " + stock.symbol + "<br>" + "Company: " + stock.companyName + "<br> Value: "
+        $('<li class=\'s\' id=' + stock.symbol + "  onclick='showStock(" + stock.symbol +")'>" + "Symbol: " + stock.symbol + "<br>" + "Company: " + stock.companyName + "<br> Value: "
             + stock.currValue + "<br> Cycle: " + stock. transactionsCycle + "</li>").appendTo($('#stocksList'));
     });
 }
@@ -44,7 +44,9 @@ function appendChatEntry(index, entry)
 /******************************************************************************/
 function createChatEntry(entry)
 {
-    return $("<div class=\"msg\">").append(entry.userName + ":  " + entry.chatString);
+    return $("<div class=\"msg\"><span class='userNameBold'>" + entry.userName + "</span>: " + entry.chatString + "</div>");
+
+    //return $("<div class=\"msg\">").append(entry.userName + ":  " + entry.chatString);
 }
 /******************************************************************************/
 function showStock(symbol)
@@ -113,6 +115,13 @@ $(function()
     setInterval(ajaxChatList, refreshRate);
 });
 /******************************************************************************/
+function updateUserTitle()
+{
+    var titleElement = document.getElementById("headerTitle");
+
+    titleElement.innerText = "Welcome " + sessionStorage.getItem("username").valueOf();
+}
+/******************************************************************************/
 $(function() { // onload...do
     //add a function to the submit event
     $("#chatform").submit(function() {
@@ -139,5 +148,10 @@ $(function() { // onload...do
     });
 });
 /******************************************************************************/
+$(function()
+{
+   updateUserTitle();
+});
 
+/******************************************************************************/
 

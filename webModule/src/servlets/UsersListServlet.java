@@ -24,10 +24,9 @@ public class UsersListServlet extends HttpServlet
 
         try (PrintWriter out = response.getWriter())
         {
-           Gson gson = new Gson();
+            Gson gson = new Gson();
             Users users = ServletsUtils.getUsers(getServletContext());
-            Set<String> usersList = users.getUsersOnline();
-            String json = gson.toJson(usersList);
+            String json = gson.toJson(users.getUsersOnline());
             out.println(json);
             out.flush();
         }

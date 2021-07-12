@@ -16,14 +16,17 @@ public class Users
     /******************************************************************************/
     public synchronized Collection<User> getUsers() { return this.users.values(); }
     /******************************************************************************/
-    public synchronized Set<String> getUsersOnline()
+    public synchronized List<Pair<String, String>> getUsersOnline()
     {
-        Set<String> res = new HashSet<>();
+        List<Pair<String, String>> usersOnline = new ArrayList<>();
 
         for(Map.Entry<String, User> e : users.entrySet())
-            res.add("Name: " + e.getKey() + "\n" + "Role: " + e.getValue().getType().toString());
+        {
+            String role = e.getValue().getType().toString().toLowerCase(Locale.ROOT);
+            usersOnline.add(new Pair<>(e.getKey(), role));
+        }
 
-        return res;
+        return usersOnline;
     }
     /******************************************************************************/
     public void clearData() { users.clear(); }
