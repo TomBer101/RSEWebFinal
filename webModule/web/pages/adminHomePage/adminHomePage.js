@@ -44,7 +44,7 @@ function appendChatEntry(index, entry)
 /******************************************************************************/
 function createChatEntry(entry)
 {
-    return $("<span class=\"success\">").append(entry.userName + " ->  " + entry.chatString);
+    return $("<div class=\"msg\">").append(entry.userName + ":  " + entry.chatString);
 }
 /******************************************************************************/
 function showStock(symbol)

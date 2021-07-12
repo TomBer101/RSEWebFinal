@@ -33,7 +33,7 @@ body
 #onlineUsersContainer
 {
     position: relative;
-    margin: 15% auto;
+    margin: 5% auto;
     padding: 20px 20px 20px;
     width: 600px;
     height: 200px;
@@ -43,7 +43,7 @@ body
     box-shadow: 0 0 200px rgba(255, 255, 255, 0.5), 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
-#onlineUsersContainer:before
+#onlineUsersContainer:before, .chatContainer:before
 {
     content: '';
     position: absolute;
@@ -74,12 +74,13 @@ body
     background-image: linear-gradient(to bottom, white, #eef2f5);
     -webkit-box-shadow: 0 1px whitesmoke;
     box-shadow: 0 1px whitesmoke;
+    margin-bottom: 4px;
 }
 
-.container-fluid
+.chatContainer
 {
     position: relative;
-    margin: 15% auto;
+    margin: 7% auto;
     padding: 20px 20px 20px;
     width: 600px;
     height: 200px;
@@ -87,6 +88,7 @@ body
     border-radius: 3px;
     -webkit-box-shadow: 0 0 200px rgba(255, 255, 255, 0.5), 0 1px 2px rgba(0, 0, 0, 0.3);
     box-shadow: 0 0 200px rgba(255, 255, 255, 0.5), 0 1px 2px rgba(0, 0, 0, 0.3);
+    height: 520px;
 }
 
 input
@@ -122,15 +124,10 @@ input[type=text]:focus
     box-shadow: 0 1px whitesmoke;
 }
 
-.container-fluid p
+.chatContainer p
 {
     text-align: center;
     margin: 20px 0 0;
-}
-
-#chatform
-{
-    margin-bottom: 0;
 }
 
 input[type=submit]:active
@@ -169,7 +166,42 @@ input[type=submit] {
 #userstring
 {
     height: 22px;
-    width: 500px;
+    width: 515px;
     border-radius: 8px;
     border-color: #b3c0c8;
+}
+
+#chatform
+{
+    position: absolute;
+    bottom: 12px;
+}
+
+input[type=text]:focus
+{
+    border-color: #6e7579;
+    outline-color: #f3f3f3;
+}
+
+#chatarea
+{
+    height: 450px;
+    overflow: auto;
+    direction: ltl;
+}
+
+.msg
+{
+    border-bottom: solid 1px #ccc;
+    padding: 10px;
+    transform: rotate(180deg);
+    direction: ltr;
+    font-size: 15px;
+}
+#usersListDiv
+{
+    height: 180px;
+    overflow: auto;
+    transform: rotate(180deg);
+    direction: rtl;
 }
