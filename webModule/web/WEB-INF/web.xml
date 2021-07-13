@@ -138,12 +138,15 @@
     <servlet-mapping>
         <servlet-name>SendChatServlet</servlet-name>
         <url-pattern>/pages/adminHomePage/sendChat</url-pattern>
+        <url-pattern>/pages/brokerHomePage/sendChat</url-pattern>
     </servlet-mapping>
 
     <servlet>
         <servlet-name>SendChatServlet</servlet-name>
         <servlet-class>servlets.SendChatServlet</servlet-class>
     </servlet>
+
+
 
     <servlet-mapping>
         <servlet-name>AlertDataServlet</servlet-name>

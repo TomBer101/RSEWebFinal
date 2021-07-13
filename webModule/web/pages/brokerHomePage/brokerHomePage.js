@@ -4,6 +4,7 @@ var USER_LIST_SERVLET_URL = buildUrlWithContextPath("usersList");
 var STOCK_LIST_SERVLET_URL = buildUrlWithContextPath("stocksList");
 var USER_DATA_SERVLET_URL = buildUrlWithContextPath("userData");
 var USER_ALERT_SERVLET_URL = buildUrlWithContextPath("alertData");
+var CHAT_LIST_SERVLET_URL = buildUrlWithContextPath("chatList");
 /******************************************************************************/
 function refreshUsersList(users)
 {
@@ -44,6 +45,43 @@ function refreshUserData(userData)
         currencyAfterCell.innerHTML = action.currencyAfter;
         symbolCell.innerHTML = action.symbol;
     })
+
+    var scroller = $("#userHistoryTb");
+    var height = scroller[0].scrollHeight - $(scroller).height;
+    $(scroller).stop().animate({scrollTop: height}, "slow");
+}
+/******************************************************************************/
+function appendChatEntry(index, entry)
+{
+    var entryElement = createChatEntry(entry);
+    $("#chatarea").append(entryElement).append("<br>");
+}
+/******************************************************************************/
+function createChatEntry(entry)
+{
+    return $("<div class=\"msg\"><span class='userNameBold'>" + entry.userName + "</span>: " + entry.chatString + "</div>");
+}
+/******************************************************************************/
+function ajaxChatList()
+{
+    $.ajax({
+        url: CHAT_LIST_SERVLET_URL,
+        dataType: 'json',
+        success: function(stocks)
+        {
+            refreshChatList(stocks);
+        }
+    })
+}
+/******************************************************************************/
+function refreshChatList(chatData)
+{
+    $('#chatarea').empty();
+    $.each(chatData || [], appendChatEntry);
+
+    var scroller = $("#chatarea");
+    var height = scroller[0].scrollHeight - $(scroller).height();
+    $(scroller).stop().animate({ scrollTop: height }, "slow");
 }
 /******************************************************************************/
 function showStock(symbol)
@@ -98,6 +136,12 @@ function makeAlert(alertData)
     alert(msg);
 }
 /******************************************************************************/
+function updateUserTitle()
+{
+    var titleElement = document.getElementById("headerTitle");
+    titleElement.innerText = "Welcome " + sessionStorage.getItem("username").valueOf();
+}
+/******************************************************************************/
 function ajaxUsersList()
 {
     $.ajax({
@@ -147,14 +191,17 @@ function ajaxCheckForAlert()
 /******************************************************************************/
 $(function()
 {
+    updateUserTitle();
     ajaxUsersList();
     ajaxStocksList();
     ajaxUserData();
+    ajaxChatList();
 
     setInterval(ajaxUsersList, refreshRate);
     setInterval(ajaxStocksList, refreshRate);
     setInterval(ajaxUserData, refreshRate);
     setInterval(ajaxCheckForAlert, refreshRate);
+    setInterval(ajaxChatList, refreshRate);
 });
 /******************************************************************************/
 $(function(){
@@ -263,5 +310,26 @@ $(function()
     return false;
 });
 /******************************************************************************/
+$(function() { // onload...do
+    //add a function to the submit event
+    $("#chatform").submit(function() {
+        $.ajax({
+            data: $(this).serialize(),
+            method: "POST",
+            url: this.action,
+            timeout: 2000,
+            error: function()
+            {
+                console.error("Failed to submit");
+            },
+            success: function(r)
+            {
+            }
+        });
 
+        $("#userstring").val("");
+        return false;
+    });
+});
+/******************************************************************************/
 
