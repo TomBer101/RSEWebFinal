@@ -22,7 +22,7 @@
     padding: 10px 10px 10px 15px;
     margin-left: 10px;
     grid-template-columns:1.1fr 1fr 2fr 1fr;
-    grid-template-rows: 50px 90px;
+    grid-template-rows: 50px 230px 100px 100px 323px;
 }
 
 .forms
@@ -30,6 +30,13 @@
     grid-column-start: 2;
     grid-row-start: 2;
     grid-row-end: 4;
+}
+
+.issue
+{
+    grid-column-start: 3;
+    grid-row-start: 2;
+    grid-row-end: 2;
 }
 
 .history
@@ -306,6 +313,17 @@ input[type=text]:focus
     border-bottom: solid 1px #ccc;
     margin-bottom: 10px;
     padding-bottom: 10px;
+}
+
+.s:hover
+{
+    background: #979da0;
+    -webkit-box-shadow: 0 0 200px rgba(255, 255, 255, 0.5), 0 1px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 200px rgba(255, 255, 255, 0.5), 0 1px 2px rgba(0, 0, 0, 0.3);
+    background-image: -webkit-linear-gradient(top, #f8f8f8, #e3e3e3);
+    background-image: -moz-linear-gradient(top, #f8f8f8, #e3e3e3);
+    background-image: -o-linear-gradient(top, #f8f8f8, #e3e3e3);
+    background-image: linear-gradient(to bottom, #f8f8f8, #e3e3e3);
 }
 
 .userOnline

@@ -1,16 +1,16 @@
 /******************************************************************************/
 var refreshRate = 2000;
 var STOCK_DATA_SERVLET_URL = buildUrlWithContextPath("stockData4Broker");
-
+var USER_ALERT_SERVLET_URL = buildUrlWithContextPath("alertData");
 /******************************************************************************/
 function updateStockChart(chartData)
 {
     $("#stockChartHolder").empty();
-    //chartData = chartData.reverse();
+    chartData = chartData.reverse();
 
     var chart = new CanvasJS.Chart("stockChartHolder",{
-        animationEnabled: true,
-        animationDuration: 2000,
+       // animationEnabled: true,
+       // animationDuration: 2000,
         title: { text:"Stock Price History"},
         axisX: { title: "Time"},
         axisY: { title: "Price"},
@@ -94,10 +94,44 @@ function ajaxRefreshBrokerData(){
     })
 }
 /******************************************************************************/
+function makeAlert(alertData)
+{
+    var msg = "";
+
+    $.each(alertData || [], function(index, data)
+    {
+        msg += (data.oppositeUserName + " ");
+
+        if (data.way === "BUY")
+            msg += "bought from ";
+        else
+            msg += "sold to ";
+
+        msg += ("you " + data.amount + " stocks of " + data.symbol + ", for " + data.price + " per stock. " + data.leftOvers
+            + " still waiting.\n");
+    });
+
+    alert(msg);
+}
+/******************************************************************************/
+function ajaxCheckForAlert()
+{
+    $.ajax({
+        url: USER_ALERT_SERVLET_URL,
+        dataType: 'json',
+        success: function(dataAlert)
+        {
+            makeAlert(dataAlert);
+        }
+    })
+    return false;
+}
+/******************************************************************************/
 $(function ()
 {
     ajaxRefreshBrokerData();
     setInterval(ajaxRefreshBrokerData, refreshRate);
+    setInterval(ajaxCheckForAlert, refreshRate);
 });
 /******************************************************************************/
 function appendTrades(currTrades, way, stockSymbol)

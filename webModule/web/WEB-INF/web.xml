@@ -71,7 +71,7 @@
 
     <servlet>
         <servlet-name>uploadFileServlet</servlet-name>
-        <servlet-class>servlets.filesServlets.FileUploadServlet</servlet-class>
+        <servlet-class>servlets.FileUploadServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -144,5 +144,17 @@
         <servlet-name>SendChatServlet</servlet-name>
         <servlet-class>servlets.SendChatServlet</servlet-class>
     </servlet>
+
+    <servlet-mapping>
+        <servlet-name>AlertDataServlet</servlet-name>
+        <url-pattern>/alertData</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>AlertDataServlet</servlet-name>
+        <servlet-class>servlets.CheckForAlert</servlet-class>
+    </servlet>
+
+
 
 </web-app>

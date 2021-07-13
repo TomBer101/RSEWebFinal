@@ -1,4 +1,4 @@
-package servlets.filesServlets;
+package servlets;
 
 import enginePackage.Stocks;
 import enginePackage.Users;
@@ -29,8 +29,6 @@ public class FileUploadServlet  extends HttpServlet
         response.setContentType("text/html");
 
         Collection<Part> parts = request.getParts(); // "read" file. As for now: part == a file (or any other input ?)
-
-        // StringBuilder fileContent = new StringBuilder(); // for "stringify" the context - not needed for us.
 
         Users users = ServletsUtils.getUsers(getServletContext());
         Stocks stocks = ServletsUtils.getStocks(getServletContext());

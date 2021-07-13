@@ -1,7 +1,6 @@
 package enginePackage;
 
 import DTOs.CommandDTO;
-
 import java.util.*;
 
 public class Commands
@@ -84,6 +83,9 @@ public class Commands
         Trade trade = new Trade(currAmount, currPriceLimit, buyer, seller, currCmd.getType());
         transactionHistory.add(0, trade);
         tradeDescription.addSubTrade(currAmount, currPriceLimit, seller, buyer);
+
+        currCmd.getInitiator().addTradeAlert(currCmd.getStock().getSymbol(), currPriceLimit, currAmount, currCmd.getAmountOfStocks(),
+                newCmd.getInitiator().getName(), newCmd.getWay().toString());
     }
     /******************************************************************************/
     public String findBuyer(Command currCmd, Command newCmd)

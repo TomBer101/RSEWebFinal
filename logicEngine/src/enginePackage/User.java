@@ -1,15 +1,11 @@
 package enginePackage;
 
+import DTOs.DataToAlertDTO;
 import DTOs.UserDataDTO;
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-
 import generated.RseItem;
-
-import java.util.Collection;
-import java.util.List;
 
 public class User
 {
@@ -21,6 +17,7 @@ public class User
     private List<Action> actionsHistory;
     private int cashMoney = 0;
     private Type type;
+    private DataToAlertDTO dataToAlertDTO;
     /******************************************************************************/
     public User(String name, Type type)
     {
@@ -29,6 +26,8 @@ public class User
         this.name = name;
         this.actionsHistory = new ArrayList<>();
         this.type = type;
+
+        this.dataToAlertDTO = new DataToAlertDTO();
     }
     /******************************************************************************/
     public String getName() { return name; }
@@ -86,5 +85,19 @@ public class User
         return holdings.getStockAmount(chosenStock);
     }
     /******************************************************************************/
-
+    public void addTradeAlert(String symbol, int price, int amount, int leftOvers, String oppositeUserName, String way)
+    {
+        dataToAlertDTO.addAlertData(symbol, price, amount, leftOvers, oppositeUserName, way);
+    }
+    /******************************************************************************/
+    public List<DataToAlertDTO.StockAlert> getDataToAlertDTO()
+    {
+        if (dataToAlertDTO.isEmpty())
+            return null;
+        else
+        {
+            return dataToAlertDTO.getDataList();
+        }
+    }
+    /******************************************************************************/
 }

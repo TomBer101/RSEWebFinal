@@ -3,6 +3,7 @@ var refreshRate = 2000; // milli seconds
 var USER_LIST_SERVLET_URL = buildUrlWithContextPath("usersList");
 var STOCK_LIST_SERVLET_URL = buildUrlWithContextPath("stocksList");
 var USER_DATA_SERVLET_URL = buildUrlWithContextPath("userData");
+var USER_ALERT_SERVLET_URL = buildUrlWithContextPath("alertData");
 /******************************************************************************/
 function refreshUsersList(users)
 {
@@ -10,7 +11,7 @@ function refreshUsersList(users)
 
     $.each(users || [], function(index, user)
     {
-        $('<li class="userOnline">' + user + '</li>')
+        $('<li class="userOnline"> <span class="userNameBold">' + user.key + '</span><span class="userRole">' + user.value + '</span></li>')
             .appendTo($('#usersList'));
     });
 }
@@ -72,9 +73,29 @@ function refreshStocksList(stocks)
 
     $.each(stocks || [], function (index, stock)
     {
-        $('<li id=' + stock.symbol + "  onclick='showStock(" + stock.symbol +")'>" + "Symbol: " + stock.symbol + "<br>" + "Company: " + stock.companyName + "<br> Value: "
+        $('<li class=\'s\' + id=' + stock.symbol + "  onclick='showStock(" + stock.symbol +")'>" + "Symbol: " + stock.symbol + "<br>" + "Company: " + stock.companyName + "<br> Value: "
             + stock.currValue + "<br> Cycle: " + stock. transactionsCycle + "</li>").appendTo($('#stocksList'));
     });
+}
+/******************************************************************************/
+function makeAlert(alertData)
+{
+    var msg = "";
+
+    $.each(alertData || [], function(index, data)
+    {
+        msg += (data.oppositeUserName + " ");
+
+        if (data.way === "BUY")
+            msg += "bought from ";
+        else
+            msg += "sold to ";
+
+        msg += ("you " + data.amount + " stocks of " + data.symbol + ", for " + data.price + " per stock. " + data.leftOvers
+            + " still waiting.\n");
+    });
+
+    alert(msg);
 }
 /******************************************************************************/
 function ajaxUsersList()
@@ -111,6 +132,19 @@ function ajaxStocksList()
     })
 }
 /******************************************************************************/
+function ajaxCheckForAlert()
+{
+    $.ajax({
+        url: USER_ALERT_SERVLET_URL,
+        dataType: 'json',
+        success: function(dataAlert)
+        {
+            makeAlert(dataAlert);
+        }
+    })
+    return false;
+}
+/******************************************************************************/
 $(function()
 {
     ajaxUsersList();
@@ -120,6 +154,7 @@ $(function()
     setInterval(ajaxUsersList, refreshRate);
     setInterval(ajaxStocksList, refreshRate);
     setInterval(ajaxUserData, refreshRate);
+    setInterval(ajaxCheckForAlert, refreshRate);
 });
 /******************************************************************************/
 $(function(){
@@ -214,8 +249,7 @@ $(function()
                 timeout: 4000,
                 error: function(e)
                 {
-                    console.error("Failed to get result from server");
-                    $("#error-holder").text("Failed to get result from server:\n" + e);
+                    $("#error-holder").append(e.responseText);
                 },
                 success: function(r)
                 {
@@ -229,3 +263,5 @@ $(function()
     return false;
 });
 /******************************************************************************/
+
+

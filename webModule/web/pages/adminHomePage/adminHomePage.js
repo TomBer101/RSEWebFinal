@@ -45,8 +45,6 @@ function appendChatEntry(index, entry)
 function createChatEntry(entry)
 {
     return $("<div class=\"msg\"><span class='userNameBold'>" + entry.userName + "</span>: " + entry.chatString + "</div>");
-
-    //return $("<div class=\"msg\">").append(entry.userName + ":  " + entry.chatString);
 }
 /******************************************************************************/
 function showStock(symbol)
@@ -65,8 +63,6 @@ function showStock(symbol)
             window.location.replace(nextPageUrl);
         }
     });
-
-    // By default - we will always return false
     return false;
 }
 /******************************************************************************/
@@ -107,6 +103,7 @@ function ajaxChatList()
 /******************************************************************************/
 $(function()
 {
+    updateUserTitle();
     ajaxUsersList();
     ajaxStocksList();
     ajaxChatList();
@@ -118,7 +115,6 @@ $(function()
 function updateUserTitle()
 {
     var titleElement = document.getElementById("headerTitle");
-
     titleElement.innerText = "Welcome " + sessionStorage.getItem("username").valueOf();
 }
 /******************************************************************************/
@@ -136,22 +132,11 @@ $(function() { // onload...do
             },
             success: function(r)
             {
-                //do not add the user string to the chat area
-                //since it's going to be retrieved from the server
-                //$("#result h1").text(r);
             }
         });
 
         $("#userstring").val("");
-        // by default - we'll always return false so it doesn't redirect the user.
         return false;
     });
 });
 /******************************************************************************/
-$(function()
-{
-   updateUserTitle();
-});
-
-/******************************************************************************/
-
