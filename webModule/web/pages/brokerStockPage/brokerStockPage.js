@@ -110,7 +110,7 @@ function makeAlert(alertData)
             + " still waiting.\n");
     });
 
-    var x;
+    var z;
     alert(msg);
 }
 /******************************************************************************/
