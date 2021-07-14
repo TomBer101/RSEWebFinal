@@ -8,38 +8,52 @@
     <script src="../../utilsUI/graphBuilder.js"></script>
     <script src="canvasjs.min.js"></script>
     <script src="brokerStockPage.js"></script>
+
+    <link rel="stylesheet" href="brokerStockPage.css">
+
 </head>
 
 <body>
-    <h1 id="mainTitle"></h1>
 
-    <ul id="stockDataList">
-        <li id="symbol"></li>
-        <li id="companyName"></li>
-        <li id="value"></li>
-        <li id="cycle"></li>
-    </ul>
+<div id="grid-container">
+
+    <!-------- HEADER ------->
+    <div class="mainTitle">
+        <h1 id="mainTitle"></h1>
+    </div>
+
+    <div id="digitalClock"> </div>
+
+    <!-- SUBTITLE -------->
+    <div class="stockData" id="symbolContainer"></div>
+    <div class="stockData" id="companyNameContainer"></div>
+    <div class="stockData" id="valueContainer"></div>
+    <div class="stockData" id="cycleContainer"></div>
 
     <div id="myHolds">
         <label class="lbl">Your share of this stock: </label>
         <span id="amount"></span>
     </div>
 
-    <table id="transactionHistory">
-        <thead>
-            <tr>
-                <th>Date</th>
-                <th>Amount</th>
-                <th>Value</th>
-            </tr>
-        </thead>
-        <tbody id="transactionHistoryTb"></tbody>
-    </table>
+    <!------- STOCK TRANSACTIONS ------->
+    <div class="tableContainer">
+        <table id="transactionHistory">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Amount</th>
+                    <th>Value</th>
+                </tr>
+            </thead>
+            <tbody id="transactionHistoryTb"></tbody>
+        </table>
+    </div>
 
-
+    <!----------- MAKE COMMAND ------------->
     <br>
-    <button type="button" id="Make Command" onclick="document.getElementById('makeCommandHolder').style.display='block'">Make Command</button>
-    <div id="makeCommandHolder" style="display:none">
+    <div class="makeCommandHolder">
+    <!--<button type="button" id="Make Command" onclick="document.getElementById('makeCommandHolder').style.display='block'">Make Command</button>-->
+    <div id="makeCommandHolder" >
         <form id="makeCommandForm" method="POST" action="makeCommand">
             <label class="lbl">Would you like to buy or sell?</label><br>
             <input type="radio" id="bRadio" name="way" value="BUY"/>
@@ -69,15 +83,25 @@
             <input type="submit" value="Commit"/>
         </form>
     </div>
-
-    <div id="msg-holder"></div>
-    <div id="commandRes" style="display:none">
-        <ul id="currTrades"></ul>
     </div>
 
-    <input type="button" value="Go back!" onclick="window.location.replace('/webModule_Web_exploded/pages/brokerHomePage/brokerHomePage.html');">
+    <div class="makeCommandRes">
+        <h4>Command Results</h4>
+        <div id="msg-holder"></div>
 
+        <div id="commandRes" >
+            <ul id="currTrades"></ul>
+        </div>
+    </div>
+
+    <!------------ CHART CONTAINER -------->
     <div id="stockChartHolder"></div>
 
+    <!--------- GO BACK --------------------->
+    <div class="backContainer">
+        <input type="button" value="Go back!" onclick="window.location.replace('/webModule_Web_exploded/pages/brokerHomePage/brokerHomePage.html');">
+    </div>
+
+</div>
 </body>
 </html>

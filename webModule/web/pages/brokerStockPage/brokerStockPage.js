@@ -28,19 +28,19 @@ function refreshBrokerData(stockData)
     var currStockDTO = stockData.stockDTO;
 
     $("#mainTitle").empty();
-    $("#mainTitle").append(currStockDTO.symbol + " Data:");
+    $("#mainTitle").append(currStockDTO.symbol + " Data:")
 
-    $("#symbol").empty();
-    $("#symbol").append("Symbol: " + currStockDTO.symbol);
+    $("#symbolContainer").empty();
+    $("#symbolContainer").append("<span class='toBold'>Symbol: </span>" + currStockDTO.symbol);
 
-    $("#companyName").empty();
-    $("#companyName").append( "Company Name: " + currStockDTO.companyName);
+    $("#companyNameContainer").empty();
+    $("#companyNameContainer").append("<span class='toBold'>Company Name: </span>" + currStockDTO.companyName);
 
-    $("#value").empty();
-    $("#value").append("Value: " + currStockDTO.currValue);
+    $("#valueContainer").empty();
+    $("#valueContainer").append("<span class='toBold'>Value: </span>" + currStockDTO.currValue);
 
-    $("#cycle").empty();
-    $("#cycle").append("Cycle: " + currStockDTO.transactionsCycle);
+    $("#cycleContainer").empty();
+    $("#cycleContainer").append("<span class='toBold'>Cycle: </span>" + currStockDTO.transactionsCycle);
 
     $("#amount").empty();
     $("#amount").append(myAmount);
@@ -228,8 +228,8 @@ $(function(){
                         appendMessage(currTrades, way, stockSymbol); // I send the way to print the opposite User.
 
                         $("#makeCommandForm")[0].reset();
-                        formHolder.style.display = "none";
-                        currTradesList.style.display = "block";
+                        //formHolder.style.display = "none";
+                        //currTradesList.style.display = "block";
                     },
                     error:function(t)
                     {
@@ -253,4 +253,50 @@ function enableLimit()
     document.getElementById("priceLimit").disabled =  false;
 }
 /******************************************************************************/
+function Time()
+{
+    var date = new Date();
+    var hour = date.getHours();
+    var minute = date.getMinutes();
+    var seconds = date.getSeconds();
+    var period = "";
 
+    if (hour >= 12)
+        period = "PM";
+    else
+        period = "AM";
+
+    if (hour == 0)
+        hour = 12;
+    else
+    {
+        if (hour > 12)
+        {
+            hour = hour - 12;
+        }
+    }
+
+    hour = update(hour);
+    minute = update(minute);
+    seconds = update(seconds);
+
+    document.getElementById("digitalClock").innerHTML = hour + " : " + minute +
+        " : " + seconds + " " + period;
+
+    setTimeout(Time, 1000);
+
+}
+/******************************************************************************/
+function update(t)
+{
+    if (t < 10)
+        return "0" + t;
+    else
+        return t;
+}
+/******************************************************************************/
+$(function()
+{
+    Time();
+});
+/******************************************************************************/
