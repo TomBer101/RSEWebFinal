@@ -209,6 +209,7 @@ input[type=button]
 
 .transactionHistoryContainer
 {
+    position:relative;
     overflow: auto;
     background: white;
     margin-left: 80px;
@@ -317,7 +318,7 @@ input[type=button]:active
     border-radius: 8px;
 }
 
-#digitalClock:before
+#digitalClock:before, .transactionHistoryContainer:before
 {
     content: '';
     position: absolute;
