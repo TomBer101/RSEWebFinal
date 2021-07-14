@@ -329,3 +329,10 @@ input[type=button]:active
     background: rgba(0, 0, 0, 0.08);
     border-radius: 4px;
 }
+
+.mainTitle
+{
+    color: #555;
+    text-align: center;
+    text-shadow: 0 1px white;
+}
