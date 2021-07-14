@@ -46,9 +46,9 @@ function refreshUserData(userData)
         symbolCell.innerHTML = action.symbol;
     })
 
-    var scroller = $("#userHistoryTb");
-    var height = scroller[0].scrollHeight - $(scroller).height;
-    $(scroller).stop().animate({scrollTop: height}, "slow");
+    // var scroller = $("#userHistoryTb");
+    // var height = scroller[0].scrollHeight - $(scroller).height;
+    // $(scroller).stop().animate({scrollTop: height}, "slow");
 }
 /******************************************************************************/
 function appendChatEntry(index, entry)

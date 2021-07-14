@@ -42,7 +42,7 @@
     </div>
   </div>
 
-      <div  class="forms">
+      <div  class="forms" >
         <label>Current Currency: </label>
         <label id="currentCurrency"></label>
         <form id="chargeMoney" method="POST" action="chargeMoney">
@@ -50,9 +50,12 @@
           <input type="submit" value="load $"/>
         </form>
 
-          <button type="button" id="loadFileBtn" onclick="document.getElementById('uploadFileHolder').style.display='block'">Load File</button>
-
-          <button type="button" id="issueStock" onclick="document.getElementById('issueStockHolder').style.display='block'">Issue</button>
+          <br>
+          <div class="buttonBlock" style="display: inline-flex">
+          <button class="inner" type="button" id="loadFileBtn" onclick="document.getElementById('uploadFileHolder').style.display='block'">Load File</button>
+          <button class="inner" type="button" id="issueStock" onclick="document.getElementById('issueStockHolder').style.display='block'">Issue</button>
+          </div>
+          <br>
 
           <div id="uploadFileHolder" style="display:none" class="upload">
               <form id="uploadFileForm" action="uploadFile" method="POST" enctype="multipart/form-data">
