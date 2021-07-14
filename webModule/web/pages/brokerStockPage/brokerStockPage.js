@@ -19,6 +19,7 @@ function updateStockChart(chartData)
             type: "line",
             dataPoints: chartData
         }]
+
     });
     chart.render();
 }
@@ -109,6 +110,7 @@ function makeAlert(alertData)
             + " still waiting.\n");
     });
 
+    var x;
     alert(msg);
 }
 /******************************************************************************/
