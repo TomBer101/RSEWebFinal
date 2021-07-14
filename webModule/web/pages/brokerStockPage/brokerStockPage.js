@@ -6,11 +6,12 @@ var USER_ALERT_SERVLET_URL = buildUrlWithContextPath("alertData");
 function updateStockChart(chartData)
 {
     $("#stockChartHolder").empty();
+
     chartData = chartData.reverse();
 
     var chart = new CanvasJS.Chart("stockChartHolder",{
-       // animationEnabled: true,
-       // animationDuration: 2000,
+        // animationEnabled: true,
+        // animationDuration: 2000,
         title: { text:"Stock Price History"},
         axisX: { title: "Time"},
         axisY: { title: "Price"},
@@ -18,6 +19,7 @@ function updateStockChart(chartData)
             type: "line",
             dataPoints: chartData
         }]
+
     });
     chart.render();
 }
@@ -50,13 +52,12 @@ function refreshBrokerData(stockData)
     else
         $("#sRadio").prop('disabled', false);
 
-
     var tableBodyElement = document.getElementById("transactionHistoryTb");
     if (tableBodyElement.length !== 1)
         $("#transactionHistoryTb").empty();
 
     var dataForChart = [];
-    var index = 0 ;
+    var index = 0;
     currStockDTO.transactionHistory.forEach(trade =>
         {
             var newRow = tableBodyElement.insertRow(-1);
@@ -69,11 +70,9 @@ function refreshBrokerData(stockData)
             amountCell.innerHTML = trade.amount;
             valueCell.innerHTML = trade.value;
 
-            dataForChart.push({x:index, y:parseInt(trade.value)});
-            index++;
+            dataForChart.push({label:trade.date, y:parseInt(trade.value)});
         }
     )
-
     updateStockChart(dataForChart);
 }
 /******************************************************************************/
@@ -111,6 +110,7 @@ function makeAlert(alertData)
             + " still waiting.\n");
     });
 
+    var z;
     alert(msg);
 }
 /******************************************************************************/

@@ -209,6 +209,7 @@ input[type=button]
 
 .transactionHistoryContainer
 {
+    position:relative;
     overflow: auto;
     background: white;
     margin-left: 80px;
@@ -317,7 +318,7 @@ input[type=button]:active
     border-radius: 8px;
 }
 
-#digitalClock:before
+#digitalClock:before, .transactionHistoryContainer:before
 {
     content: '';
     position: absolute;
@@ -328,4 +329,11 @@ input[type=button]:active
     z-index: -1;
     background: rgba(0, 0, 0, 0.08);
     border-radius: 4px;
+}
+
+.mainTitle
+{
+    color: #555;
+    text-align: center;
+    text-shadow: 0 1px white;
 }
