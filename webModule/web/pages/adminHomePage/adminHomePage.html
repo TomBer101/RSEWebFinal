@@ -11,52 +11,54 @@
 
 <body>
 
-<div id="headerContainer">
-    <div id="headerTitleContainer">
-        <h1 id="headerTitle"></h1>
+<div class="grid-container">
+
+     <!--------------- HEADER ------------------>
+    <div class="header">
+            <h1 id="headerTitle"></h1>
     </div>
-</div>
+    <!------------------------------------------>
 
-<div class="split left">
-    <div id="onlineUsersContainer">
-        <h2 class="opTitle">Online Users</h2>
-        <div id="usersListDiv">
-            <ul id="usersList"></ul>
-        </div>
-    </div>
+    <!------------ ONLINE USERS ---------------->
+        <div class="onlineUsersContainer">
 
-    <div class="chatContainer">
-        <div id="chatTitleContainer">
-            <h4 id="chatTitle">Chat</h4>
-        </div>
+            <h2 class="opTitle">Online Users</h2>
 
-        <div id="chatarea" ></div>
-
-            <div class="col-xs-4">
-                        <!-- The actual form through which you send data back to the user -->
-                        <form id="chatform" method="POST" action="sendChat">
-                            <input type="text" id="userstring" name="chatString"/>
-                            <input type="submit" value="Send"/>
-                        </form>
+            <div id="usersListDiv">
+                <ul id="usersList"></ul>
             </div>
-    </div>
-</div>
 
-<div class="split right">
-
-    <div id="stocksContainer">
-        <div id="stocksTitleContainer">
-            <h2 class="opTitle">Stocks Information</h2>
         </div>
-        <div id="stocksListDiv">
-            <ul id="stocksList">
-                <!-- each stock is gonna have an HREF to a more informative page about the stock-->
-            </ul>
-        </div>
-    </div>
+    <!------------------------------------------>
 
+    <!------------ CHAT CONTAINER -------------->
+        <div class="chatContainer">
+
+            <div id="chatTitleContainer">
+                <h4 id="chatTitle">Chat</h4>
+            </div>
+
+            <div id="chatarea" ></div>
+
+            <form id="chatform" method="POST" action="sendChat">
+                <input type="text" id="userstring" name="chatString"/>
+                <input type="submit" value="Send"/>
+            </form>
+        </div>
+    <!------------------------------------------>
+
+    <!------------ STOCKS CONTAINER -------------->
+        <div class="stocksContainer">
+            <div id="stocksTitleContainer">
+                <h2 class="opTitle">Stocks Information</h2>
+            </div>
+
+            <div id="stocksListDiv">
+                <ul id="stocksList"></ul>
+            </div>
+        </div>
+    <!------------------------------------------>
 
 </div>
-
 </body>
 </html>
