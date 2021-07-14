@@ -204,3 +204,8 @@ input[type=submit] {
     background-image: -o-linear-gradient(top, #f8f8f8, #e3e3e3);
     background-image: linear-gradient(to bottom, #f8f8f8, #e3e3e3);
 }
+
+table
+{
+    table-layout: fixed;
+}

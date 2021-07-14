@@ -6,41 +6,68 @@
   <script src="../../jquery-2.0.3.min.js"></script>
   <script src="../../utilsUI/contextPathHelper.js"></script>
   <script src="adminStockPage.js"></script>
+  <link rel="stylesheet" href="adminStockPage.css">
 </head>
 
 <body>
-  <h1 id="mainTitle"></h1>
 
-  <ul id="stockDataList">
-    <li id="symbol"></li>
-    <li id="companyName"></li>
-    <li id="value"></li>
-    <li id="cycle"></li>
-  </ul>
+<div class="grid-container">
+  <!--------------- HEADER -------------------------------------------------->
 
-  <table id="transactionHistory">
-    <thead>
+    <div id="digitalClock">
+    </div>
+    <div class="mainTitle">
+      <h1 id="mainTitle"></h1>
+    </div>
+
+  <!------------------------------------------------------------------------->
+
+  <!---------------- STOCK DATA --------------------------------------------->
+    <div class="stockData" id="symbolContainer">Symbol: GGL</div>
+    <div class="stockData" id="companyNameContainer">Company Name: Google</div>
+    <div class="stockData" id="valueContainer">Value: 100</div>
+    <div class="stockData" id="cycleContainer">Cycle: 200</div>
+  <!------------------------------------------------------------------------->
+
+  <!-------------------- SELL COMMANDS -------------------------------------->
+  <div class="sellCommandsContainer">
+    <h2>Waiting sell commands: </h2>
+    <div id="sellCommandsListContainer">
+      <ol id="sellCommands"></ol>
+    </div>
+  </div>
+  <!------------------------------------------------------------------------->
+
+  <!------------------ TRANSACTION HISTORY CONTAINER ------------------------>
+  <div class="transactionHistoryContainer">
+    <table id="transactionHistory">
+      <thead>
       <tr>
         <th>Date</th>
         <th>Amount</th>
         <th>Value</th>
       </tr>
-    </thead>
-    <tbody id="transactionHistoryTb"></tbody>
-  </table>
+      </thead>
+      <tbody id="transactionHistoryTb"></tbody>
+    </table>
+  </div>
+  <!-------------------- BUY COMMANDS --------------------------------------->
+  <div class="buyCommandsContainer">
+    <h2>Waiting buy commands: </h2>
+    <div id="buyCommandsSubDiv">
+      <ol id="buyCommands"></ol>
+    </div>
+  </div>
+  <!------------------------------------------------------------------------->
 
-  <h2>Waiting buy commands: </h2><br>
-  <ol id="buyCommands">
-  </ol>
+  <!-------------------- BACK BUTTON ---------------------------------------->
+  <div class="backBtnContainer">
+    <form>
+      <input type="button" value="Go back!" onclick="window.location.replace('/webModule_Web_exploded/pages/adminHomePage/adminHomePage.html');">
+    </form>
+  </div>
+  <!------------------------------------------------------------------------->
 
-  <h2>Waiting sell commands: </h2><br>
-
-  <ol id="sellCommands">
-  </ol>
-
-  <form>
-    <input type="button" value="Go back!" onclick="window.location.replace('/webModule_Web_exploded/pages/adminHomePage/adminHomePage.html');">
-  </form>
-
+</div>
 </body>
 </html>

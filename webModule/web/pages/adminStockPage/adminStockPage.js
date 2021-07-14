@@ -7,17 +7,17 @@ function refreshStockData(stockData)
     $("#mainTitle").empty();
     $("#mainTitle").append(stockData.symbol + " Data:")
 
-    $("#symbol").empty();
-    $("#symbol").append("Symbol: " + stockData.symbol);
+    $("#symbolContainer").empty();
+    $("#symbolContainer").append("<span class='toBold'>Symbol: </span>" + stockData.symbol);
 
-    $("#companyName").empty();
-    $("#companyName").append("Company Name: " + stockData.companyName);
+    $("#companyNameContainer").empty();
+    $("#companyNameContainer").append("<span class='toBold'>Company Name: </span>" + stockData.companyName);
 
-    $("#value").empty();
-    $("#value").append("Value: " + stockData.currValue);
+    $("#valueContainer").empty();
+    $("#valueContainer").append("<span class='toBold'>Value: </span>" + stockData.currValue);
 
-    $("#cycle").empty();
-    $("#cycle").append("Cycle: " + stockData.transactionsCycle);
+    $("#cycleContainer").empty();
+    $("#cycleContainer").append("<span class='toBold'>Cycle: </span>" + stockData.transactionsCycle);
 
     var tableBodyElement = document.getElementById("transactionHistoryTb");
 
@@ -74,4 +74,50 @@ $(function()
     setInterval(ajaxAdminData, refreshRate);
 });
 /******************************************************************************/
-// TODO : we need to add the commands from the waiting list.
+function Time()
+{
+    var date = new Date();
+    var hour = date.getHours();
+    var minute = date.getMinutes();
+    var seconds = date.getSeconds();
+    var period = "";
+
+    if (hour >= 12)
+        period = "PM";
+    else
+        period = "AM";
+
+    if (hour == 0)
+        hour = 12;
+    else
+    {
+        if (hour > 12)
+        {
+            hour = hour - 12;
+        }
+    }
+
+    hour = update(hour);
+    minute = update(minute);
+    seconds = update(seconds);
+
+    document.getElementById("digitalClock").innerHTML = hour + " : " + minute +
+        " : " + seconds + " " + period;
+
+    setTimeout(Time, 1000);
+
+}
+/******************************************************************************/
+function update(t)
+{
+    if (t < 10)
+        return "0" + t;
+    else
+        return t;
+}
+/******************************************************************************/
+$(function()
+{
+   Time();
+});
+/******************************************************************************/

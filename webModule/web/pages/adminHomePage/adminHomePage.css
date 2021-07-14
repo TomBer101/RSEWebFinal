@@ -6,6 +6,53 @@ body
     background: #51b2cd;
 }
 
+.grid-container
+{
+    display: grid;
+    grid-gap: 30px;
+    grid-template-columns:0.9fr 2fr 1.2fr ;
+    grid-template-rows: 50px 230px 270px 100px 323px;
+}
+
+.header
+{
+    grid-column-start: 1;
+    grid-column-end: 4;
+    grid-row-start: 1;
+    grid-row-end: 1;
+}
+
+.onlineUsersContainer
+{
+    grid-column-start: 1;
+    grid-column-end: 1;
+    grid-row-start: 2;
+    grid-row-end: 4;
+}
+
+.chatContainer
+{
+    grid-column-start: 2;
+    grid-column-end: 2;
+    grid-row-start: 2;
+    grid-row-end: 5;
+}
+
+.stocksContainer
+{
+    grid-column-start: 3;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 5;
+}
+
+#usersListDiv
+{
+    height: 90%;
+    overflow: auto;
+    direction: ltr;
+}
+
 #headerContainer
 {
     color: #555;
@@ -14,45 +61,18 @@ body
     font-size: 16px;
 }
 
-.split
-{
-    height: 100%;
-    width: 50%;
-    position: fixed;
-    z-index: 1;
-    top: 60px;
-    overflow-x: hidden;
-    padding-top: 20px;
-}
-
-.left
-{
-    left: 0;
-    background-color: #51b2cd;
-}
-
-.right
-{
-    right: 0;
-    background-color: #51b2cd;
-}
-
-
-#onlineUsersContainer
+.onlineUsersContainer
 {
     position: relative;
-    margin: 5% auto;
-    padding: 20px 20px 20px;
-    width: 470px;
-    height: 200px;
     background: white;
     border-radius: 3px;
     -webkit-box-shadow: 0 0 200px rgba(255, 255, 255, 0.5), 0 1px 2px rgba(0, 0, 0, 0.3);
     box-shadow: 0 0 200px rgba(255, 255, 255, 0.5), 0 1px 2px rgba(0, 0, 0, 0.3);
-    margin-right: 290px;
+
+    margin-left: 40px;
 }
 
-#onlineUsersContainer:before, .chatContainer:before, #stocksContainer:before
+.onlineUsersContainer:before, .chatContainer:before, .stocksContainer:before
 {
     content: '';
     position: absolute;
@@ -67,7 +87,6 @@ body
 
 .opTitle
 {
-    margin: -20px -20px 21px;
     line-height: 40px;
     font-size: 21px;
     font-weight: bold;
@@ -83,21 +102,19 @@ body
     background-image: linear-gradient(to bottom, white, #eef2f5);
     -webkit-box-shadow: 0 1px whitesmoke;
     box-shadow: 0 1px whitesmoke;
-    margin-bottom: 4px;
+    margin: 0px;
 }
 
 .chatContainer
 {
     position: relative;
-    margin: 7% auto;
     padding: 20px 20px 20px;
-    width: 600px;
-    height: 200px;
     background: white;
     border-radius: 3px;
     -webkit-box-shadow: 0 0 200px rgba(255, 255, 255, 0.5), 0 1px 2px rgba(0, 0, 0, 0.3);
     box-shadow: 0 0 200px rgba(255, 255, 255, 0.5), 0 1px 2px rgba(0, 0, 0, 0.3);
-    height: 490px;
+    margin-right: 140px;
+    margin-left: 140px;
 }
 
 input
@@ -171,21 +188,21 @@ input[type=submit]
     background-image: linear-gradient(to bottom, #edf5f8, #cde5ef);
     -webkit-box-shadow: inset 0 1px white, 0 1px 2px rgba(0, 0, 0, 0.15);
     box-shadow: inset 0 1px white, 0 1px 2px rgba(0, 0, 0, 0.15);
-    margin-left: 0px;
+    float: right;
 }
 
 #userstring
 {
-    height: 22px;
-    width: 515px;
+    font-size: 19px;
     border-radius: 8px;
     border-color: #b3c0c8;
+    width: 83%;
+    height: 88%;
 }
 
 #chatform
 {
-    position: absolute;
-    bottom: 12px;
+    height: 30px;
 }
 
 input[type=text]:focus
@@ -196,7 +213,7 @@ input[type=text]:focus
 
 #chatarea
 {
-    height: 420px;
+    height: 89%;
     overflow: auto;
     transform: rotate(180deg);
     direction: rtl;
@@ -212,33 +229,23 @@ input[type=text]:focus
     border-radius: 10px;
 }
 
-#usersListDiv
+.stocksContainer
 {
-    height: 180px;
-    overflow: auto;
-    direction: ltr;
-}
-
-#stocksContainer
-{
+    margin-right: 40px;
     position: relative;
-    margin: 5% auto;
-    padding: 20px 20px 20px;
-    width: 600px;
-    height: 200px;
     background: white;
     border-radius: 3px;
     -webkit-box-shadow: 0 0 200px rgba(255, 255, 255, 0.5), 0 1px 2px rgba(0, 0, 0, 0.3);
     box-shadow: 0 0 200px rgba(255, 255, 255, 0.5), 0 1px 2px rgba(0, 0, 0, 0.3);
-    height: 800px;
 }
 
 #stocksListDiv
 {
     overflow: auto;
     direction: ltr;
-    height: 770px;
     font-size: 14px;
+    height: 92%;
+    width: 100%;
 }
 
 .s
@@ -285,11 +292,17 @@ input[type=text]:focus
 
 #stocksList
 {
-    padding-left: 20px;
+    padding-left: 40px;
+    width: 100%;
+    height: 92%;
 }
 
 #stocksContainer
 {
-    width: 450px;
     margin-right: 170px;
+}
+
+.header
+{
+    text-align: center;
 }
