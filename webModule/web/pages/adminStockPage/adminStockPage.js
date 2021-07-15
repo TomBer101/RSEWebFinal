@@ -37,24 +37,36 @@ function refreshStockData(stockData)
         valueCell.innerHTML = trade.value;
     })
 
-    $("#buyCommands").empty();
+    $("#buyCommandsListContainer").empty();
 
     $.each(stockData.buyOffers || [], function (index, offer)
     {
-        $('<li>' + "Data: " + offer.date+ "<br>" + "Way: " + offer.way + "<br> Value: "
-            + offer.offerValue + "<br> Amount: " + offer.amount + "<br> Initiator: " + offer.initiatorUserName
-        + "<br> type: " + offer.type + "<br></li>").appendTo($('#buyCommands'));
+        $("<div class='cmdObject'> <span class='toBold'>Date: </span>" + offer.date +
+        "<br> <span class='toBold'>Way: </span>" + offer.way + "<br> <span class='toBold'>Value: </span>" +
+        offer.offerValue + "<br> <span class='toBold'>Amount: </span> " + offer.amount +
+        "<br> <span class='toBold'>Intitator: </span>" + offer.initiatorUserName +
+            "<br><span class='toBold'>Type: </span>" + offer.type +"</div>").appendTo("#buyCommandsListContainer");
     });
 
-    $("#sellCommands").empty();
+    var scroller = $("#buyCommandsListContainer");
+    var height = scroller[0].scrollHeight - $(scroller).height();
+    $(scroller).stop().animate({ scrollTop: height }, "slow");
+
+
+    $("#sellCommandsListContainer").empty();
 
     $.each(stockData.sellOffers || [], function (index, offer)
     {
-        $('<li>' + "Data: " + offer.date+ "<br>" + "Way: " + offer.way + "<br> Value: "
-            + offer.offerValue + "<br> Amount: " + offer.amount + "<br> Initiator: " + offer.initiatorUserName
-            + "<br> type: " + offer.type + "<br></li>").appendTo($('#sellCommands'));
+        $("<div class='cmdObject'> <span class='toBold'>Date: </span>" + offer.date +
+            "<br> <span class='toBold'>Way: </span>" + offer.way + "<br> <span class='toBold'>Value: </span>" +
+            offer.offerValue + "<br> <span class='toBold'>Amount: </span> " + offer.amount +
+            "<br> <span class='toBold'>Intitator: </span>" + offer.initiatorUserName +
+            "<br><span class='toBold'>Type: </span>" + offer.type +"</div>").appendTo("#sellCommandsListContainer");
     });
 
+    var scroller = $("#sellCommandsListContainer");
+    var height = scroller[0].scrollHeight - $(scroller).height();
+    $(scroller).stop().animate({ scrollTop: height }, "slow");
 }
 /******************************************************************************/
 function ajaxAdminData()
