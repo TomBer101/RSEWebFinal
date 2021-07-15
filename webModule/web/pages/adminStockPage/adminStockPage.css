@@ -263,29 +263,16 @@ input[type=button]:active
 {
     height: 83%;
     width: 100%;
+    overflow: auto;
+    direction: ltr;
 }
 
-#sellCommands
-{
-    height: 100%;
-    margin-top: 0;
-    margin-bottom: 0;
-    padding: 0;
-}
-
-#buyCommands
-{
-    margin-top: 0;
-    margin-bottom: 0;
-    width: 100%;
-    height: 100%;
-    padding: 0;
-}
-
-#buyCommandsSubDiv
+#buyCommandsListContainer
 {
     height: 85%;
     width: 100%;
+    overflow: auto;
+    direction: ltr;
 }
 
 #digitalClock
@@ -336,4 +323,17 @@ input[type=button]:active
     color: #555;
     text-align: center;
     text-shadow: 0 1px white;
+}
+
+.toBold
+{
+    font-weight: bold;
+}
+
+.cmdObject
+{
+    border-bottom: solid 1px #ccc;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
 }

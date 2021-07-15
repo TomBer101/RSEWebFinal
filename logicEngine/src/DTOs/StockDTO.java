@@ -31,7 +31,7 @@ public class StockDTO
         });
 
         this.buyOffers = stock.buyCommandsToDTO();
-        this.buyOffers = stock.sellCommandsToDTO();
+        this.sellOffers = stock.sellCommandsToDTO();
     }
     /******************************************************************************/
     public String getCompanyName() { return companyName; }
