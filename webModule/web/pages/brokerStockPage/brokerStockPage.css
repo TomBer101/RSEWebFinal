@@ -10,7 +10,7 @@ body
     display: grid;
     grid-gap:15px;
     grid-template-columns:0.9fr 0.9fr 0.9fr 0.9fr 0.9fr ;
-    grid-template-rows: 50px 50px 350px 170px 170px 40px;
+    grid-template-rows: 50px 50px 50px 350px 170px 170px 40px;
     margin-right: 10px;
     margin-left: 10px;
 }
@@ -32,17 +32,25 @@ body
 {
     grid-column-start: 1;
     grid-column-end: 2;
-    grid-row-start: 2;
-    grid-row-end: 2;
+    grid-row-start: 3;
+    grid-row-end: 3;
     font-size: 20px;
+}
+
+#header
+{
+    grid-column-start: 1;
+    grid-column-end: 6;
+    grid-row-start: 1;
+    grid-row-end: 3;
 }
 
 #companyNameContainer
 {
     grid-column-start: 2;
     grid-column-end: 3;
-    grid-row-start: 2;
-    grid-row-end: 2;
+    grid-row-start: 3;
+    grid-row-end: 3;
     font-size: 20px;
 }
 
@@ -50,8 +58,8 @@ body
 {
     grid-column-start: 3;
     grid-column-end: 4;
-    grid-row-start: 2;
-    grid-row-end: 2;
+    grid-row-start: 3;
+    grid-row-end: 3;
     font-size: 20px;
 }
 
@@ -59,8 +67,8 @@ body
 {
     grid-column-start: 4;
     grid-column-end: 5;
-    grid-row-start: 2;
-    grid-row-end: 2;
+    grid-row-start: 3;
+    grid-row-end: 3;
     font-size: 20px;
 }
 
@@ -68,20 +76,22 @@ body
 {
     grid-column-start: 5;
     grid-column-end: 6;
-    grid-row-start: 2;
-    grid-row-end: 2;
-    font-size: 20px;
+    grid-row-start: 3;
+    grid-row-end: 3;
+    font-size: 18px;
+    color: black;
 }
 
 .tableContainer
 {
     grid-column-start: 4;
     grid-column-end: 6;
-    grid-row-start: 3;
-    grid-row-end: 3;
+    grid-row-start: 4;
+    grid-row-end: 4;
     height: 100%;
     overflow: auto;
     background: #f3f3f3;
+    margin-right: 30px;
 }
 
 thead tr th
@@ -147,25 +157,28 @@ tbody tr td{
 {
     grid-column-start: 1;
     grid-column-end: 2;
-    grid-row-start: 3;
-    grid-row-end: 5;
+    grid-row-start: 4;
+    grid-row-end: 6;
     font-size: 20px;
+    color: black;
 }
 
 .makeCommandRes
 {
     grid-column-start: 2;
     grid-column-end: 3;
-    grid-row-start: 3;
-    grid-row-end: 5;
+    grid-row-start: 4;
+    grid-row-end: 6;
 }
 
 #stockChartHolder
 {
-    grid-row-start: 4;
-    grid-row-end: 6;
+    position: relative;
+    grid-row-start: 5;
+    grid-row-end: 7;
     grid-column-start: 4;
     grid-column-end: 6;
+    margin-right: 30px;
 }
 
 .backContainer
@@ -188,6 +201,7 @@ input[type=number]
 
 #makeCommandHolder
 {
+    margin-left: 30px;
     margin-top: 20px;
 }
 
@@ -211,7 +225,7 @@ input[type=number]
     background-color: whitesmoke;
     position: relative;
 }
-.makeCommandRes:before
+.makeCommandRes:before, #stockChartHolder:before
 {
     content: '';
     position: absolute;
@@ -294,6 +308,10 @@ input[type=submit], button, input[type=button]
     margin-left: 10px;
 }
 
+input[type=button]
+{
+    margin-left: 30px;
+}
 #makeCommandForm input[type=submit]
 {
     padding-right: 33px;
@@ -312,40 +330,6 @@ input[type=submit], button, input[type=button]
     grid-row-end: 2;
 }
 
-#digitalClock
-{
-    background: #f3f3f3;
-    width: 40%;
-    margin: auto;
-    padding-top: 7px;
-    padding-bottom: 7px;
-    font-family: 'Open Sans Condensed', sans-serif;
-    font-size: 15px;
-    text-align: center;
-    background-image: -webkit-linear-gradient(top, white, #eef2f5);
-    background-image: -moz-linear-gradient(top, white, #eef2f5);
-    background-image: -o-linear-gradient(top, white ,#eef2f5);
-    background-image: linear-gradient(to bottom, white, #eef2f5);
-    -webkit-box-shadow: 0 1px whitesmoke;
-    box-shadow: 0 1px whitesmoke;;
-    padding-right: 10px;
-    padding-left: 10px;
-    color: #555;
-    border-radius: 8px;
-}
-
-#digitalClock:before
-{
-    content: '';
-    position: absolute;
-    top: -8px;
-    right: -8px;
-    bottom: -8px;
-    left: -8px;
-    z-index: -1;
-    background: rgba(0, 0, 0, 0.08);
-    border-radius: 4px;
-}
 
 ul {
     list-style: none;
@@ -368,3 +352,50 @@ li {
     font-weight: bold;
 }
 
+
+
+#digitalClock
+{
+    position:relative;
+    width: 8%;
+    margin: auto;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 18px;
+    text-align: center;
+    -webkit-box-shadow: 0 1px whitesmoke;
+    box-shadow: 0 1px whitesmoke;;
+    padding-right: 10px;
+    padding-left: 10px;
+    border-radius: 8px;
+    color: black;
+}
+
+#header
+{
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-top: 10px;
+    margin-bottom: 1px;
+    background-color: #ffffff;
+    opacity: 0.6;
+    -webkit-box-shadow: 0 0 200px rgba(255, 255, 255, 0.5), 0 1px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 200px rgba(255, 255, 255, 0.5), 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.mainTitle
+{
+    grid-column-start: 3;
+    grid-column-end: 4;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    color: black;
+    text-align: center;
+}
+
+.stockData
+{
+    margin-left: 30px;
+    color: black;
+}

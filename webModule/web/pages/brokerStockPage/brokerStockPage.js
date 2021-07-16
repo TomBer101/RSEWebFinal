@@ -30,16 +30,16 @@ function refreshBrokerData(stockData)
     $("#mainTitle").append(currStockDTO.symbol + " Data:")
 
     $("#symbolContainer").empty();
-    $("#symbolContainer").append("<span class='toBold'>Symbol: </span>" + currStockDTO.symbol);
+    $("#symbolContainer").append("<span class='toBold'>Symbol:  </span>" + currStockDTO.symbol);
 
     $("#companyNameContainer").empty();
-    $("#companyNameContainer").append("<span class='toBold'>Company Name: </span>" + currStockDTO.companyName);
+    $("#companyNameContainer").append("<span class='toBold'>Company Name:  </span>" + currStockDTO.companyName);
 
     $("#valueContainer").empty();
-    $("#valueContainer").append("<span class='toBold'>Value: </span>" + currStockDTO.currValue);
+    $("#valueContainer").append("<span class='toBold'>Value:  </span>" + currStockDTO.currValue);
 
     $("#cycleContainer").empty();
-    $("#cycleContainer").append("<span class='toBold'>Cycle: </span>" + currStockDTO.transactionsCycle);
+    $("#cycleContainer").append("<span class='toBold'>Cycle:  </span>" + currStockDTO.transactionsCycle);
 
     $("#amount").empty();
     $("#amount").append(myAmount);
