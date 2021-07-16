@@ -149,25 +149,30 @@ function appendTrades(currTrades, way, stockSymbol)
             //others.push(trade[otherSide]);
         });
 
+    var scroller = $("#currTrades");
+    var height = scroller[0].scrollHeight - $(scroller).height();
+    $(scroller).stop().animate({ scrollTop: height }, "slow");
+
     //ajaxPushTradeNotafication(others, currTrades);
 
 }
 /******************************************************************************/
 function appendMessage(currTrades, way, stockSymbol)
 {
-    var leftOvers = parseInt(currTrades.offerStockAmount) - parseInt(currTrades.inWaitingList);
+    var leftOvers = parseInt(currTrades.inWaitingList);
+    var currAmount = parseInt(currTrades.offerStockAmount);
 
     switch(leftOvers)
     {
-        case parseInt(0):
+        case parseInt(currAmount):
             $("#msg-holder").append("Sorry. No trade had been made.");
             break;
-        case(parseInt(currTrades.offerStockAmount)):
+        case(0):
             $("#msg-holder").append("YAY! All the command is finished!")
             appendTrades(currTrades, way, stockSymbol);
             break;
         default:
-            $("#msg-holder").append(msg.inWaitingList + " stocks are waiting. ")
+            $("#msg-holder").append(leftOvers + " stocks are waiting. ")
             appendTrades(currTrades, way, stockSymbol);
             breake;
     }

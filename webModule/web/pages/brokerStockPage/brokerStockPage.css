@@ -347,5 +347,23 @@ input[type=submit], button, input[type=button]
     border-radius: 4px;
 }
 
+ul {
+    list-style: none;
+    height: 100px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    padding-left: 6px;
+    padding-right: 3px;
+    height: -webkit-fill-available;
+}
 
+li {
+    height: 30px;
+    background: #ccc;
+    border-bottom: black 1px solid;
+}
 
+/*li {*/
+/*    min-height: 100vh;*/
+/*    list-style-type:none;*/
+/*}*/
