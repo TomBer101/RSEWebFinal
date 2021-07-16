@@ -10,8 +10,6 @@ function updateStockChart(chartData)
     chartData = chartData.reverse();
 
     var chart = new CanvasJS.Chart("stockChartHolder",{
-        // animationEnabled: true,
-        // animationDuration: 2000,
         title: { text:"Stock Price History"},
         axisX: { title: "Time"},
         axisY: { title: "Price"},
@@ -19,7 +17,6 @@ function updateStockChart(chartData)
             type: "line",
             dataPoints: chartData
         }]
-
     });
     chart.render();
 }

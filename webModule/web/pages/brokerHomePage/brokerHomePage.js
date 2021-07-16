@@ -45,10 +45,6 @@ function refreshUserData(userData)
         currencyAfterCell.innerHTML = action.currencyAfter;
         symbolCell.innerHTML = action.symbol;
     })
-
-    // var scroller = $("#userHistoryTb");
-    // var height = scroller[0].scrollHeight - $(scroller).height;
-    // $(scroller).stop().animate({scrollTop: height}, "slow");
 }
 /******************************************************************************/
 function appendChatEntry(index, entry)
@@ -100,8 +96,6 @@ function showStock(symbol)
             window.location.replace(nextPageUrl);
         }
     });
-
-    // By default - we will always return false
     return false;
 }
 /******************************************************************************/
@@ -138,7 +132,7 @@ function makeAlert(alertData)
 /******************************************************************************/
 function updateUserTitle()
 {
-    var titleElement = document.getElementById("headerTitle");
+    var titleElement = document.getElementById("mainTitle");
     titleElement.innerText = "Welcome " + sessionStorage.getItem("username").valueOf();
 }
 /******************************************************************************/
@@ -332,4 +326,50 @@ $(function() { // onload...do
     });
 });
 /******************************************************************************/
+function Time()
+{
+    var date = new Date();
+    var hour = date.getHours();
+    var minute = date.getMinutes();
+    var seconds = date.getSeconds();
+    var period = "";
 
+    if (hour >= 12)
+        period = "PM";
+    else
+        period = "AM";
+
+    if (hour == 0)
+        hour = 12;
+    else
+    {
+        if (hour > 12)
+        {
+            hour = hour - 12;
+        }
+    }
+
+    hour = update(hour);
+    minute = update(minute);
+    seconds = update(seconds);
+
+    document.getElementById("digitalClock").innerHTML = hour + " : " + minute +
+        " : " + seconds + " " + period;
+
+    setTimeout(Time, 1000);
+
+}
+/******************************************************************************/
+function update(t)
+{
+    if (t < 10)
+        return "0" + t;
+    else
+        return t;
+}
+/******************************************************************************/
+$(function()
+{
+    Time();
+});
+/******************************************************************************/

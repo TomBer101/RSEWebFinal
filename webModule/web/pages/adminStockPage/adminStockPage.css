@@ -11,23 +11,32 @@ body
     display: grid;
     grid-gap: 30px;
     grid-template-columns:0.9fr 0.9fr 0.9fr 0.9fr 0.9fr ;
-    grid-template-rows: 50px 50px 170px 170px 170px 40px;
+    grid-template-rows: 50px 50px 50px 170px 170px 170px 40px;
 }
 
 .mainTitle
 {
     grid-column-start: 3;
     grid-column-end: 4;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    color: black;
+}
+
+#header
+{
+    grid-column-start: 1;
+    grid-column-end: 6;
     grid-row-start: 1;
-    grid-row-end: 2;
+    grid-row-end: 3;
 }
 
 #symbolContainer
 {
     grid-column-start: 1;
     grid-column-end: 2;
-    grid-row-start: 2;
-    grid-row-end: 2;
+    grid-row-start: 3;
+    grid-row-end: 3;
     font-size: 20px;
 }
 
@@ -35,8 +44,8 @@ body
 {
     grid-column-start: 2;
     grid-column-end: 3;
-    grid-row-start: 2;
-    grid-row-end: 2;
+    grid-row-start: 3;
+    grid-row-end: 3;
     font-size: 20px;
 }
 
@@ -44,8 +53,8 @@ body
 {
     grid-column-start: 3;
     grid-column-end: 4;
-    grid-row-start: 2;
-    grid-row-end: 2;
+    grid-row-start: 3;
+    grid-row-end: 3;
     font-size: 20px;
 }
 
@@ -53,24 +62,24 @@ body
 {
     grid-column-start: 4;
     grid-column-end: 5;
-    grid-row-start: 2;
-    grid-row-end: 2;
+    grid-row-start: 3;
+    grid-row-end: 3;
     font-size: 20px;
 }
 .backBtnContainer
 {
     grid-column-start: 1;
     grid-column-end: 1;
-    grid-row-start: 6;
-    grid-row-end: 7;
+    grid-row-start: 7;
+    grid-row-end: 8;
 }
 
 .sellCommandsContainer
 {
     grid-column-start: 1;
     grid-column-end: 2;
-    grid-row-start: 3;
-    grid-row-end: 5;
+    grid-row-start: 4;
+    grid-row-end: 6;
 }
 
 .sellCommandsContainer
@@ -121,16 +130,18 @@ body
 {
     grid-column-start: 2;
     grid-column-end: 5;
-    grid-row-start: 3;
-    grid-row-end: 5;
+    grid-row-start: 4;
+    grid-row-end: 6;
+    -webkit-box-shadow: 0 0 200px rgba(255, 255, 255, 0.5), 0 1px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 200px rgba(255, 255, 255, 0.5), 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .buyCommandsContainer
 {
     grid-column-start: 5;
     grid-column-end: 6;
-    grid-row-start: 3;
-    grid-row-end: 5;
+    grid-row-start: 4;
+    grid-row-end: 6;
 }
 
 .buyCommandsContainer
@@ -143,7 +154,7 @@ body
     margin-right: 40px;
 }
 
-.buyCommandsContainer:before
+.buyCommandsContainer:before, .transactionHistoryContainer:before
 {
     content: '';
     position: absolute;
@@ -205,6 +216,7 @@ input[type=button]
 .stockData
 {
     padding-left: 40px;
+    color: black;
 }
 
 .transactionHistoryContainer
@@ -285,44 +297,26 @@ input[type=button]:active
 
 #digitalClock
 {
-    background: #f3f3f3;
-    width: 40%;
+    position:relative;
+    width: 8%;
     margin: auto;
     padding-top: 7px;
     padding-bottom: 7px;
     font-family: 'Open Sans Condensed', sans-serif;
     font-size: 18px;
     text-align: center;
-    background-image: -webkit-linear-gradient(top, white, #eef2f5);
-    background-image: -moz-linear-gradient(top, white, #eef2f5);
-    background-image: -o-linear-gradient(top, white ,#eef2f5);
-    background-image: linear-gradient(to bottom, white, #eef2f5);
     -webkit-box-shadow: 0 1px whitesmoke;
     box-shadow: 0 1px whitesmoke;;
     padding-right: 10px;
     padding-left: 10px;
-    color: #555;
     border-radius: 8px;
+    color: black;
 }
 
-#digitalClock:before, .transactionHistoryContainer:before
-{
-    content: '';
-    position: absolute;
-    top: -8px;
-    right: -8px;
-    bottom: -8px;
-    left: -8px;
-    z-index: -1;
-    background: rgba(0, 0, 0, 0.08);
-    border-radius: 4px;
-}
 
 .mainTitle
 {
-    color: #555;
     text-align: center;
-    text-shadow: 0 1px white;
 }
 
 .toBold
@@ -336,4 +330,31 @@ input[type=button]:active
     margin-left: 10px;
     margin-right: 10px;
     margin-bottom: 10px;
+}
+
+tr
+{
+    text-align: center;
+}
+
+#tHead
+{
+    border-bottom: 1px solid #cfcfcf;
+    border-radius: 3px 3px 0 0;
+    background-image: -webkit-linear-gradient(top, white, #eef2f5);
+    background-image: -moz-linear-gradient(top, white, #eef2f5);
+    background-image: -o-linear-gradient(top, white ,#eef2f5);
+    background-image: linear-gradient(to bottom, white, #eef2f5);
+}
+
+#header
+{
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-top: 10px;
+    margin-bottom: 1px;
+    background-color: #ffffff;
+    opacity: 0.6;
+    -webkit-box-shadow: 0 0 200px rgba(255, 255, 255, 0.5), 0 1px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 200px rgba(255, 255, 255, 0.5), 0 1px 2px rgba(0, 0, 0, 0.3);
 }

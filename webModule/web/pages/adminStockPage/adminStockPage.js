@@ -52,7 +52,6 @@ function refreshStockData(stockData)
     var height = scroller[0].scrollHeight - $(scroller).height();
     $(scroller).stop().animate({ scrollTop: height }, "slow");
 
-
     $("#sellCommandsListContainer").empty();
 
     $.each(stockData.sellOffers || [], function (index, offer)
