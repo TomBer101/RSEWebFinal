@@ -19,8 +19,6 @@ public class ChargeMoneyServlet extends HttpServlet
         String userNameFromSession = SessionUtils.getUsername(request);
         int amountFromParameter = Integer.parseInt(request.getParameter("moneyAmount"));
         users.addCashToUser(userNameFromSession, amountFromParameter);
-
-        // TODO we need to handle some errors?
     }
     /******************************************************************************/
     protected void doGet(HttpServletRequest request, HttpServletResponse response)

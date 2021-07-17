@@ -6,7 +6,8 @@ body
     background: #51b2cd;
 }
 
-#grid-container {
+#grid-container
+{
     display: grid;
     grid-gap:15px;
     grid-template-columns:0.9fr 0.9fr 0.9fr 0.9fr 0.9fr ;
@@ -139,11 +140,13 @@ th {
     border-collapse: collapse;
 }
 
-tbody tr:hover {
+tbody tr:hover
+{
     background: #e6f2f7;
 }
 
-tbody tr td{
+tbody tr td
+{
     padding: 10px 15px;
     text-align: center;
     border-bottom: 1px solid #ddd;
@@ -167,8 +170,8 @@ tbody tr td{
 {
     grid-column-start: 2;
     grid-column-end: 3;
-    grid-row-start: 3;
-    grid-row-end: 5;
+    grid-row-start: 4;
+    grid-row-end: 6;
 }
 
 #stockChartHolder
@@ -336,41 +339,6 @@ input[type=button]
     grid-row-end: 2;
 }
 
-#digitalClock
-{
-    background: #f3f3f3;
-    width: 40%;
-    margin: auto;
-    padding-top: 7px;
-    padding-bottom: 7px;
-    font-family: 'Open Sans Condensed', sans-serif;
-    font-size: 15px;
-    text-align: center;
-    background-image: -webkit-linear-gradient(top, white, #eef2f5);
-    background-image: -moz-linear-gradient(top, white, #eef2f5);
-    background-image: -o-linear-gradient(top, white ,#eef2f5);
-    background-image: linear-gradient(to bottom, white, #eef2f5);
-    -webkit-box-shadow: 0 1px whitesmoke;
-    box-shadow: 0 1px whitesmoke;;
-    padding-right: 10px;
-    padding-left: 10px;
-    color: #555;
-    border-radius: 8px;
-}
-
-#digitalClock:before
-{
-    content: '';
-    position: absolute;
-    top: -8px;
-    right: -8px;
-    bottom: -8px;
-    left: -8px;
-    z-index: -1;
-    background: rgba(0, 0, 0, 0.08);
-    border-radius: 4px;
-}
-
 ul {
     list-style: none;
     height: 100px;
@@ -391,8 +359,6 @@ li {
 {
     font-weight: bold;
 }
-
-
 
 #digitalClock
 {
