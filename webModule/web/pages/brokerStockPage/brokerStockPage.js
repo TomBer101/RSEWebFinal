@@ -7,15 +7,19 @@ function updateStockChart(chartData)
 {
     $("#stockChartHolder").empty();
 
-    chartData = chartData.reverse();
+     var reversed = chartData.slice(1, chartData.length).reverse();
+     reversed.unshift(chartData[0]);
 
     var chart = new CanvasJS.Chart("stockChartHolder",{
-        title: { text:"Stock Price History"},
+        backgroundColor: "#fdfdfd",
+
+    title: { text:"Stock Price History"},
         axisX: { title: "Time"},
         axisY: { title: "Price"},
         data: [{
+            lineColor:"#6b6969",
             type: "line",
-            dataPoints: chartData
+            dataPoints: reversed, color:"#90d8db"
         }]
     });
     chart.render();
@@ -54,7 +58,8 @@ function refreshBrokerData(stockData)
         $("#transactionHistoryTb").empty();
 
     var dataForChart = [];
-    var index = 0;
+    dataForChart.push({label:"Init", y:parseInt(currStockDTO.initValue)}); // Stock's price begins from it init value.
+
     currStockDTO.transactionHistory.forEach(trade =>
         {
             var newRow = tableBodyElement.insertRow(-1);

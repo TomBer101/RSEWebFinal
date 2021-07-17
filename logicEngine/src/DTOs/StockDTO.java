@@ -12,6 +12,7 @@ public class StockDTO
     private String companyName;
     private String symbol;
     private int currValue;
+    private int initValue;
     private int transactionsCycle;
     private List<TradeDTO> transactionHistory;
     private List<OfferDTO> buyOffers;
@@ -22,6 +23,7 @@ public class StockDTO
         this.companyName = stock.getCompanyName();
         this.symbol = stock.getSymbol();
         this.currValue = stock.getCurrValue();
+        this.initValue = stock.getInitValue();
         this.transactionsCycle = stock.getTransactionsCycle();
 
         this.transactionHistory = new ArrayList<>();

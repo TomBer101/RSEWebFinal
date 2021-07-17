@@ -14,6 +14,7 @@ public class Stock
     private String companyName;
     private String symbol;
     private int currValue;
+    private int initValue;
     private int transactionsCycle = 0;
     private List<Trade> transactionsHistory;
     private Commands buyCommands;   // waiting list for buy
@@ -24,6 +25,7 @@ public class Stock
         this.companyName = companyName;
         this.symbol = symbol;
         this.currValue = currValue;
+        this.initValue = currValue;
         transactionsHistory = new ArrayList<>();
         buyCommands = new Commands(false);  // false -> waiting list for buy
         sellCommands = new Commands(true);  // true -> waiting list for sell
@@ -54,6 +56,7 @@ public class Stock
     public String getCompanyName() { return companyName; }
     public String getSymbol() { return symbol; }
     public int getCurrValue() { return currValue; }
+    public int getInitValue() { return initValue; }
     public int getTransactionsCycle() { return transactionsCycle; }
     public List<Trade> getTransactionsHistory() { return transactionsHistory; }
     public Map<Integer, List<Command>> getBuyCommands() { return buyCommands.getCommandsMap(); }
