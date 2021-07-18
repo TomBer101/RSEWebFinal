@@ -36,6 +36,7 @@ public class Stock
         this.companyName = src.getRseCompanyName();
         this.symbol = src.getRseSymbol().toUpperCase(Locale.ROOT);
         this.currValue = src.getRsePrice();
+        this.initValue = src.getRsePrice();
         transactionsHistory = new ArrayList<>();
         buyCommands = new Commands(false);  // false -> waiting list for buy
         sellCommands = new Commands(true);  // true -> waiting list for sell
