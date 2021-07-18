@@ -56,7 +56,7 @@ public class Commands
             {
                 newCmd.substractAmount(currCmd.getAmountOfStocks());
                 currAmount = currCmd.getAmountOfStocks();
-                makeTransaction(tradeDescription, transactionsHistory, currCmd, newCmd, currAmount, currPriceLimit);
+                makeTransaction(tradeDescription, transactionsHistory, currCmd, newCmd, currAmount, currPriceLimit, 0);
                 newCmd.getStock().setCurrValue();
                 newCmd.getInitiator().updateHoldings(currAmount, newCmd.getWay(), newCmd.getStock());
                 currCmd.getInitiator().updateHoldings(currAmount, currCmd.getWay(), newCmd.getStock());
@@ -66,7 +66,7 @@ public class Commands
             {
                 currAmount = newCmd.getAmountOfStocks();
                 currCmd.substractAmount(newCmd.getAmountOfStocks());
-                makeTransaction(tradeDescription, transactionsHistory, currCmd, newCmd, currAmount, currPriceLimit);
+                makeTransaction(tradeDescription, transactionsHistory, currCmd, newCmd, currAmount, currPriceLimit, currCmd.getAmountOfStocks());
                 newCmd.getStock().setCurrValue();
                 newCmd.getInitiator().updateHoldings(currAmount, newCmd.getWay(), newCmd.getStock());
                 currCmd.getInitiator().updateHoldings(currAmount, currCmd.getWay(), newCmd.getStock());
@@ -75,7 +75,7 @@ public class Commands
         }
     }
     /******************************************************************************/
-    public void makeTransaction(CommandDTO tradeDescription, List<Trade> transactionHistory, Command currCmd, Command newCmd, int currAmount, int currPriceLimit)
+    public void makeTransaction(CommandDTO tradeDescription, List<Trade> transactionHistory, Command currCmd, Command newCmd, int currAmount, int currPriceLimit, int leftOvers)
     {
         String buyer = findBuyer(currCmd, newCmd);
         String seller = findSeller(currCmd, newCmd);
@@ -84,7 +84,7 @@ public class Commands
         transactionHistory.add(0, trade);
         tradeDescription.addSubTrade(currAmount, currPriceLimit, seller, buyer);
 
-        currCmd.getInitiator().addTradeAlert(currCmd.getStock().getSymbol(), currPriceLimit, currAmount, currCmd.getAmountOfStocks(),
+        currCmd.getInitiator().addTradeAlert(currCmd.getStock().getSymbol(), currPriceLimit, currAmount, leftOvers,
                 newCmd.getInitiator().getName(), newCmd.getWay().toString());
     }
     /******************************************************************************/

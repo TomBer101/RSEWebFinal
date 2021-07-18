@@ -46,8 +46,10 @@
   </div>
 
       <div  class="forms" >
-        <label>Current Currency: </label>
-        <label id="currentCurrency"></label>
+          <span id="currency">
+              <label>Current Currency: </label>
+              <label id="currentCurrency"></label>
+          </span>
         <form id="chargeMoney" method="POST" action="chargeMoney" >
           <input type="number" id="moneyAmount" name="moneyAmount" min="0" required/>
           <input type="submit" value="load $"/>

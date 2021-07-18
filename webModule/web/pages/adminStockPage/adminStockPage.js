@@ -2,8 +2,31 @@
 var refreshRate = 2000; // milli seconds
 var ADMIN_UPDATE_DATA_SERVLET_URL = buildUrlWithContextPath("adminStockPageUpdateData");
 /******************************************************************************/
+function updateStockChart(chartData)
+{
+    $("#stockChartHolder").empty();
+
+    var reversed = chartData.slice(1, chartData.length).reverse();
+    reversed.unshift(chartData[0]);
+
+    var chart = new CanvasJS.Chart("stockChartHolder",{
+        backgroundColor: "#fdfdfd",
+
+        title: { text:"Stock Price History"},
+        axisX: { title: "Time"},
+        axisY: { title: "Price"},
+        data: [{
+            lineColor:"#6b6969",
+            type: "line",
+            dataPoints: reversed, color:"#90d8db"
+        }]
+    });
+    chart.render();
+}
+/******************************************************************************/
 function refreshStockData(stockData)
 {
+
     $("#mainTitle").empty();
     $("#mainTitle").append(stockData.symbol + " Data:")
 
@@ -24,6 +47,9 @@ function refreshStockData(stockData)
     if (tableBodyElement.length !== 1)
         $("#transactionHistoryTb").empty();
 
+    var dataForChart = [];
+    dataForChart.push({label:"Init", y:parseInt(stockData.initValue)}); // Stock's price begins from it init value.
+
     stockData.transactionHistory.forEach( trade =>
     {
         var newRow = tableBodyElement.insertRow(-1);
@@ -35,7 +61,11 @@ function refreshStockData(stockData)
         dateCell.innerHTML = trade.date;
         amountCell.innerHTML = trade.amount;
         valueCell.innerHTML = trade.value;
+
+        dataForChart.push({label:trade.date, y:parseInt(trade.value)});
     })
+
+    updateStockChart(dataForChart);
 
     $("#buyCommandsListContainer").empty();
 
@@ -50,7 +80,6 @@ function refreshStockData(stockData)
 
     var scroller = $("#buyCommandsListContainer");
     var height = scroller[0].scrollHeight - $(scroller).height();
-    $(scroller).stop().animate({ scrollTop: height }, "slow");
 
     $("#sellCommandsListContainer").empty();
 
@@ -65,7 +94,6 @@ function refreshStockData(stockData)
 
     var scroller = $("#sellCommandsListContainer");
     var height = scroller[0].scrollHeight - $(scroller).height();
-    $(scroller).stop().animate({ scrollTop: height }, "slow");
 }
 /******************************************************************************/
 function ajaxAdminData()

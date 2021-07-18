@@ -70,7 +70,7 @@ public class Stock
     }
     /******************************************************************************/
     // This method submit new command to the engine
-    public CommandDTO addCommand(Command cmd)
+    public synchronized CommandDTO addCommand(Command cmd)
     {
         CommandDTO tradeDescription = new CommandDTO(cmd.getAmountOfStocks());
 

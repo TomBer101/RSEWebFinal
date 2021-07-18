@@ -326,13 +326,18 @@ input[type=text]:focus
     grid-row-end: 3;
     color: black;
     text-align: center;
+
 }
 
+#mainTitle
+{
+    font-size: 31px;
+}
 
 #digitalClock
 {
     position:relative;
-    width: 8%;
+    width: 131px;
     margin: auto;
     padding-top: 7px;
     padding-bottom: 7px;
