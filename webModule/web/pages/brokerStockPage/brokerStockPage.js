@@ -73,8 +73,7 @@ function refreshBrokerData(stockData)
             valueCell.innerHTML = trade.value;
 
             dataForChart.push({label:trade.date, y:parseInt(trade.value)});
-        }
-    )
+        })
     updateStockChart(dataForChart);
 }
 /******************************************************************************/
@@ -145,38 +144,48 @@ function appendTrades(currTrades, way, stockSymbol)
 
     currTrades.subCommandTrades.forEach( trade =>
         {
-            $('<li class="subTrade">' + trade.amount + "Stocks with " + trade[otherSide] +
+            $('<li class="subTrade">' + trade.amount + " Stocks with " + trade[otherSide] +
                 ". with value of: " + trade.currPrice + '</li>').appendTo($("#currTrades"));
 
-            //others.push(trade[otherSide]);
         });
 
     var scroller = $("#currTrades");
     var height = scroller[0].scrollHeight - $(scroller).height();
-    $(scroller).stop().animate({ scrollTop: height }, "slow");
-
-    //ajaxPushTradeNotafication(others, currTrades);
-
 }
 /******************************************************************************/
-function appendMessage(currTrades, way, stockSymbol)
+function appendMessage(currTrades, way, type, stockSymbol)
 {
     var leftOvers = parseInt(currTrades.inWaitingList);
     var currAmount = parseInt(currTrades.offerStockAmount);
 
-    switch(leftOvers)
+    if (type === "IOC")
     {
-        case parseInt(currAmount):
-            $("#msg-holder").append("Sorry. No trade had been made.");
-            break;
-        case(0):
-            $("#msg-holder").append("YAY! All the command is finished!")
+        if (leftOvers === currAmount)
+        {
+            $("#msg-holder").append("No trades had been made.");
+        }
+        else
+        {
+            $("#msg-holder").append("0 stocks are waiting. ")
             appendTrades(currTrades, way, stockSymbol);
-            break;
-        default:
-            $("#msg-holder").append(leftOvers + " stocks are waiting. ")
-            appendTrades(currTrades, way, stockSymbol);
-            breake;
+        }
+    }
+    else
+    {
+        switch (leftOvers)
+        {
+            case parseInt(currAmount):
+                $("#msg-holder").append("Sorry. No trade had been made.");
+                break;
+            case(0):
+                $("#msg-holder").append("YAY! All the command is finished!")
+                appendTrades(currTrades, way, stockSymbol);
+                break;
+            default:
+                $("#msg-holder").append(leftOvers + " stocks are waiting. ")
+                appendTrades(currTrades, way, stockSymbol);
+                breake;
+        }
     }
 }
 /******************************************************************************/
@@ -191,7 +200,6 @@ $(function(){
 
             $("#msg-holder").empty();
             $("#currTrades").empty();
-            //currTradesList.style.display = "none";
 
             var way = document.getElementsByName('way');
             var flag1 = false;
@@ -208,6 +216,7 @@ $(function(){
             for(var i = 0; i < type.length; i++){
                 if(type[i].checked){
                     flag2 = true;
+                    type = type[i].value;
                     break;
                 }
             }
@@ -232,11 +241,9 @@ $(function(){
                     success:function(currTrades)
                     {
                         console.log("in sucsses");
-                        appendMessage(currTrades, way, stockSymbol); // I send the way to print the opposite User.
+                        appendMessage(currTrades, way, type, stockSymbol); // I send the way to print the opposite User.
 
                         $("#makeCommandForm")[0].reset();
-                        //formHolder.style.display = "none";
-                        //currTradesList.style.display = "block";
                     },
                     error:function(t)
                     {

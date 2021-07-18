@@ -36,6 +36,7 @@ public class Stock
         this.companyName = src.getRseCompanyName();
         this.symbol = src.getRseSymbol().toUpperCase(Locale.ROOT);
         this.currValue = src.getRsePrice();
+        this.initValue = src.getRsePrice();
         transactionsHistory = new ArrayList<>();
         buyCommands = new Commands(false);  // false -> waiting list for buy
         sellCommands = new Commands(true);  // true -> waiting list for sell
@@ -69,7 +70,7 @@ public class Stock
     }
     /******************************************************************************/
     // This method submit new command to the engine
-    public CommandDTO addCommand(Command cmd)
+    public synchronized CommandDTO addCommand(Command cmd)
     {
         CommandDTO tradeDescription = new CommandDTO(cmd.getAmountOfStocks());
 

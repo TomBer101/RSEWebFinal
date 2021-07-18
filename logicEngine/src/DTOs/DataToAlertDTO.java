@@ -5,8 +5,6 @@ import java.util.List;
 
 public class DataToAlertDTO
 {
-    // TODO: 1. synchronize
-    //       2.
     /******************************************************************************/
     private List<StockAlert> dataList;
     /******************************************************************************/

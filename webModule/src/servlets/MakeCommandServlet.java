@@ -31,6 +31,7 @@ public class MakeCommandServlet extends HttpServlet
         int amount = Integer.parseInt(request.getParameter("stockAmount"));
 
         CommandDTO res = stocks.addCommand(SessionUtils.getChosenStock(request),user,type, way, amount, priceLimit);
+
         try (PrintWriter out = response.getWriter())
         {
             Gson gson = new Gson();

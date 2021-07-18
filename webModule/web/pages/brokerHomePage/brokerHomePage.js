@@ -77,7 +77,6 @@ function refreshChatList(chatData)
 
     var scroller = $("#chatarea");
     var height = scroller[0].scrollHeight - $(scroller).height();
-    $(scroller).stop().animate({ scrollTop: height }, "slow");
 }
 /******************************************************************************/
 function showStock(symbol)

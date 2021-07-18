@@ -61,7 +61,6 @@ public class Stocks
     }
     /******************************************************************************/
     public CommandDTO addCommand(String stockName, User initiator, Command.Type type, Command.Way way, int amountOfStocks, int priceLimit)
-
     {
         Command cmd = new Command(stocks.get(stockName), initiator, type, way, amountOfStocks, priceLimit);
         return stocks.get(stockName).addCommand(cmd);
