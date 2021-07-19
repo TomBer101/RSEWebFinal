@@ -6,7 +6,7 @@
     padding: 10px 10px 10px 15px;
     margin-left: 10px;
     grid-template-columns:1.1fr 1fr 2fr 1fr;
-    grid-template-rows: 0.8fr 0.8fr 4fr 8fr;
+    grid-template-rows: 50px 50px 284px 373px 120px;
 }
 
 
@@ -37,6 +37,7 @@
 {
     grid-area: chatContainer;
     grid-row-start: 4;
+    grid-row-end: 6;
     grid-column-start: 1;
     grid-column-end: 2;
 }
@@ -139,14 +140,14 @@ body
 {
     font: 13px/20px "Lucida Grande", Tahoma, Verdana, sans-serif;
     color: #404040;
-    background: #e3eaea;
+    background: #51b2cd;
 }
 
-html, body
-{
-    margin: 0;
-    height: 100%;
-}
+/*html, body*/
+/*{*/
+/*    margin: 0;*/
+/*    height: 100%;*/
+/*}*/
 
 html, .grid-container
 {
@@ -275,11 +276,10 @@ html, .grid-container
 
 #stocksListDiv
 {
-    overflow: auto;
+    /*overflow: auto;*/
     direction: ltr;
-    height: 770px;
+    height:88%;
     font-size: 14px;
-    height: 797px;
 }
 
 .s
@@ -505,3 +505,12 @@ input[type=text], input[type="number"]
     border-radius: 8px;
 }
 
+ul {
+    list-style: none;
+    height: 100px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    padding-left: 6px;
+    padding-right: 3px;
+    height: -webkit-fill-available;
+}

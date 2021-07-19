@@ -83,7 +83,7 @@ function showStock(symbol)
 {
     $.ajax({
         data: "symbol=" + symbol.getAttribute('id'),
-        url:"http://localhost:8080/webModule_Web_exploded/pages/brokerHomePage/StockInfoServlet",
+        url:"http://localhost:8080/RSEfinal/pages/brokerHomePage/StockInfoServlet",
         method: "GET",
         timeout: 2000,
         error: function()
